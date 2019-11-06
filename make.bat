@@ -1,0 +1,2 @@
+gcc -c -o main.o main.c -I"C:\Program Files\Common Files\MinGW\freeglut\include"
+gcc -o main.exe main.o -L"C:\Program Files\Common Files\MinGW\freeglut\lib" -lfreeglut -lopengl32 -Wl,--subsystem,windows
