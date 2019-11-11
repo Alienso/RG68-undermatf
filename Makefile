@@ -1,7 +1,7 @@
 PROGRAM = game
 CC      = gcc
-CFLAGS  = -g -Wall -I/usr/X11R6/include -I/usr/pkg/include 
-LDFLAGS = -L/usr/X11R6/lib -L/usr/pkg/lib ./include/drawing.h ./include/header.h ./include/inventory.h ./include/Items_Enemies.h ./include/keyboard.h ./include/text.h ./include/timer.h
+CFLAGS  = -g -Wall -I/usr/X11R6/include -I/usr/pkg/include
+LDFLAGS = -L/usr/X11R6/lib -L/usr/pkg/lib ./include/header.h ./include/keyboard.h ./include/drawing.h ./include/inventory.h ./include/Items_Enemies.h ./include/text.h ./include/timer.h
 LDLIBS  = -lglut -lGLU -lGL -lm
 
 $(PROGRAM): main.o

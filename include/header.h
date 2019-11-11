@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <GL/glut.h>
 
 typedef struct ITEM{
     char name[30];
@@ -63,6 +64,7 @@ static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
 
+void draw_text(char niska[], GLfloat x_val, GLfloat y_val,float r_,float g_,float b_);
 void draw_hearth();
 void draw_base();
 void draw_menu();
@@ -76,6 +78,10 @@ void switch_to_combat();
 void highlight_current();
 //void bullet_hell();
 void init();
+
+void remove_from_inv(int item_selected,CVOR** inv);
+void add_to_inv(Item* item,CVOR** inv);
+
 Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable);
 Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def);
 
