@@ -19,7 +19,7 @@ static void on_timer_next(int value){
 }
 
 
-static void on_timer_text(int value){
+/*static void on_timer_text(int value){
 
     if (value != TIMER_TEXT)
         return;
@@ -45,6 +45,15 @@ static void on_timer_text(int value){
 
     glutTimerFunc(20,on_timer_text,TIMER_TEXT);
 
+}*/
+
+static void on_timer_combat(int value){
+    
+    if (value != TIMER_COMBAT)
+        return;
+
+    glutDisplayFunc(on_display_encounter);
+    glutKeyboardFunc(on_keyboard_encounter);
 }
 
 

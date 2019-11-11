@@ -3,6 +3,7 @@
 
 #define TIMER_NEXT 0
 #define TIMER_TEXT 1
+#define TIMER_COMBAT 2
 
 #define WALKING 0
 #define ENCOUNTER 1
@@ -41,9 +42,11 @@ static void on_keyboard_walking(unsigned char key, int x, int y);
 static void on_keyboard_combat(unsigned char key, int x, int y);
 static void on_keyboard_talk(unsigned char key, int x, int y);
 static void on_keyboard_mercy(unsigned char key, int x, int y);
-static void on_keyboard_next(unsigned char key, int x, int y);
 static void on_keyboard_none(unsigned char key, int x, int y);
 static void on_keyboard_inventory(unsigned char key, int x, int y);
+static void on_keyboard_to_encouter(unsigned char key, int x, int y);
+static void on_keyboard_to_combat(unsigned char key, int x, int y);
+static void on_keyboard_to_walking(unsigned char key, int x, int y);
 
 static void on_timer_encounter(int value);
 static void on_timer_walking(int value);
@@ -62,8 +65,9 @@ void draw_inventory();
 void draw_win();
 void draw_escape();
 void draw_mercy();
-void draw_conversation(char* s);
+void draw_conversation();
 
+void switch_to_combat();
 void highlight_current();
 //void bullet_hell();
 void init();

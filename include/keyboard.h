@@ -60,8 +60,13 @@ static void on_keyboard_encounter(unsigned char key, int x, int y){
 
         if (action_selected==0){
             enemy_hp-=my_damage;
-            if (enemy_hp<=0);
-            draw_win();
+            if (enemy_hp<=0){
+                glutDisplayFunc(draw_win);
+                glutKeyboardFunc(on_keyboard_to_walking);
+            }
+            else if (enemy_hp>0) {
+                switch_to_combat();
+            }
         }
         break;
     }
@@ -84,20 +89,20 @@ static void on_keyboard_mercy(unsigned char key, int x, int y){
 
     case ' ':
         if (mercy_action_highlited==0 && can_spare){
-            win_screen=1;
-            glutKeyboardFunc(on_keyboard_walking);
-            glutDisplayFunc(on_display_walking);
+            glutKeyboardFunc(on_keyboard_to_walking);
+            glutDisplayFunc(draw_win);
         }
         if (mercy_action_highlited==0 && !can_spare){
-            glutKeyboardFunc(on_keyboard_encounter);
+            switch_to_combat();
+
         }
         if (mercy_action_highlited==1){
             if (rand()%2==0){
-            escape_screen=1;
-            glutKeyboardFunc(on_keyboard_next);
-            glutDisplayFunc(on_display_encounter);
+                glutKeyboardFunc(on_keyboard_to_walking);
+                glutDisplayFunc(draw_escape);
             }
             else {
+                switch_to_combat();
             }
         }
         in_menu_menu=0;
@@ -116,10 +121,27 @@ static void on_keyboard_mercy(unsigned char key, int x, int y){
 
 }
 
-static void on_keyboard_next(unsigned char key, int x, int y){
+static void on_keyboard_to_encounter(unsigned char key, int x, int y){
     if (key==' '){
         in_menu_menu=0;
         glutKeyboardFunc(on_keyboard_encounter);
+    }
+    glutPostRedisplay();
+}
+
+static void on_keyboard_to_combat(unsigned char key, int x, int y){
+    if (key==' '){
+        in_menu_menu=0;
+        glutDisplayFunc(on_display_combat);
+        glutTimerFunc(5000,on_timer_combat,TIMER_COMBAT);
+        glutKeyboardFunc(on_keyboard_combat);
+    }
+    glutPostRedisplay();
+}
+
+static void on_keyboard_to_walking(unsigned char key, int x, int y){
+    if (key==' '){
+        glutKeyboardFunc(on_keyboard_walking);
     }
     glutPostRedisplay();
 }
@@ -131,7 +153,7 @@ static void on_keyboard_inventory(unsigned char key, int x, int y){
         case ' ':
             in_menu_menu=0;
             remove_from_inv(item_selected,&inv);
-            glutKeyboardFunc(on_keyboard_encounter);
+                switch_to_combat();
             break;
 
         case 'a':

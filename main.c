@@ -43,21 +43,8 @@ int main(int argc, char **argv){
     return 0;
 }
 
-
-/*void bullet_hell(){
-		
-	float x=0,y=0;	
-
-	switch (num) {
-
-		case 0:
-			x=1-t/2.5;
-			y=-0.6;
-			break;
-	}
-
-
-
-
-	draw_spike(x,y);
-}*/
+void switch_to_combat(){
+    glutDisplayFunc(on_display_combat);
+    glutKeyboardFunc(on_keyboard_combat);
+    glutTimerFunc(5000,on_timer_combat,TIMER_COMBAT);
+}

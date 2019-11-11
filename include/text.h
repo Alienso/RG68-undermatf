@@ -44,7 +44,7 @@ print_stroke_string(void* font, char* s)
 }
 
 void
-draw_text(char* niska, GLfloat x_val, GLfloat y_val,float r_,float g_,float b_){
+draw_text(char niska[], GLfloat x_val, GLfloat y_val,float r_,float g_,float b_){
 
    mode = MODE_BITMAP;
    font_index = 3;   
@@ -93,7 +93,7 @@ draw_text(char* niska, GLfloat x_val, GLfloat y_val,float r_,float g_,float b_){
    string[0][count] = '\0';*/
 
    count = 0;
-   for (i=0; niska[i]!='\n';i++){
+   for (i=0; niska[i]!='\0';i++){
 	string[0][count] = niska[i];
 	count++;
    }

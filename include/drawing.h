@@ -14,16 +14,20 @@ static void on_display_encounter(void){
         draw_menu();
     if (mercy)
         draw_mercy();
-    if (win_screen)
-        draw_win();
-    if (escape_screen)
-        draw_escape();
 
     glutSwapBuffers();
 }
 
 static void on_display_walking(void){
     return;
+}
+
+static void on_display_combat(void){
+
+    draw_base();
+    draw_hearth();
+
+    glutSwapBuffers();
 }
 
 void draw_base(){
@@ -215,7 +219,9 @@ void draw_menu(){
 
         case 1:
         strcpy(wtp,"You Talk to a Dummy..... Doesnt seem much of a conversation\0");
-        draw_conversation("cao"); //TODO TMP
+        draw_conversation(); //TODO TMP
+        action_selected=0;
+        glutKeyboardFunc(on_keyboard_to_combat);
         selecting_talk=1;
         break;
 
@@ -283,7 +289,7 @@ void draw_mercy(){
     else draw_text("Run\n",0.2,-0.8,1,1,1);
 }
 
-void draw_conversation(char* s){
+void draw_conversation(){
 
     glColor3f(0,0,0);
     glBegin(GL_POLYGON);
@@ -313,14 +319,10 @@ void draw_conversation(char* s){
 
 
     //strcpy(wtp,s);
-    glutKeyboardFunc(on_keyboard_next);
+    //glutKeyboardFunc(on_keyboard_to_walking);
     //glutTimerFunc(100,on_timer_text,TIMER_TEXT);
 
     draw_text(wtp,-0.9,-0.7,1,1,1);
-
-
-
-
 
 }
 
@@ -356,6 +358,7 @@ void draw_win(){
     draw_text("Congratulations!\0",-0.8,-0.5,1,1,1);
     draw_text("You Won 15g and 20XP\0",-0.9,-0.5,1,1,1);
 }
+
 void draw_escape(){
 
     glColor3f(0,0,0);
