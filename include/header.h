@@ -10,6 +10,11 @@
 #define COMBAT 2
 #define MENU 3
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
 typedef struct ITEM{
     char name[30];
     char description[200];

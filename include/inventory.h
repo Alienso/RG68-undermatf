@@ -3,8 +3,6 @@
 #ifndef _INVENTORY_
 #define _INVENTORY_
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "header.h"
 
 CVOR* napravi_cvor(Item* i){

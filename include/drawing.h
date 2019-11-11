@@ -1,9 +1,7 @@
 #ifndef _DRAWING_
 #define _DRAWING_
 
-#include <GL/glut.h>
 #include "header.h"
-#include "inventory.h"
 
 static void on_display_encounter(void){
 
@@ -281,12 +279,12 @@ void draw_mercy(){
 	glEnd();
 
     if (mercy_action_highlited==0)
-        draw_text("Spare\n",-0.4,-0.8,1,0.5,0);
-    else draw_text("Spare\n",-0.4,-0.8,1,0.5,0);
+        draw_text("Spare\0",-0.4,-0.8,1,0.5,0);
+    else draw_text("Spare\0",-0.4,-0.8,1,0.5,0);
 
     if (mercy_action_highlited==1)
-        draw_text("Run\n",0.2,-0.8,1,0.5,0);
-    else draw_text("Run\n",0.2,-0.8,1,1,1);
+        draw_text("Run\0",0.2,-0.8,1,0.5,0);
+    else draw_text("Run\0",0.2,-0.8,1,1,1);
 }
 
 void draw_conversation(){
@@ -428,10 +426,10 @@ void draw_inventory(){
             continue;
         strcpy(tmp,tekuci_cvor->Items->name);
         if (tekuci_cvor->Items->consumable==1){
-		    draw_text("* ",-0.9+i*0.5,-0.7-i/4*0.3,1,1,1);
+		    draw_text("* \0",-0.9+i*0.5,-0.7-i/4*0.3,1,1,1);
             draw_text(tmp,-0.85+i*0.5,-0.7-i/4*0.3,1,1,1);
             if (i==item_selected){
-                draw_text("* ",-0.9+i*0.5,-0.7-i/4*0.3,1,0.5,0);
+                draw_text("* \0",-0.9+i*0.5,-0.7-i/4*0.3,1,0.5,0);
                 draw_text(tmp,-0.85+i*0.5,-0.7-i/4*0.3,1,0.5,0);
             }
         }

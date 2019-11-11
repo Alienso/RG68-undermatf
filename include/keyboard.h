@@ -1,7 +1,6 @@
 #ifndef _KEYBOARD_
 #define _KEYBOARD_
 
-#include <GL/glut.h>
 #include "header.h"
 
 static void on_keyboard_combat(unsigned char key, int x, int y){
