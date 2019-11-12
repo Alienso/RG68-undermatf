@@ -17,8 +17,18 @@ void init(){
         exit(1);
     }
 
-    init_inv();
     init_Items_Enemies();
+    init_inv();
+    
+    weapon_equiped=Olovka;
+    curr_enemy=Programer;
+
+    int hp=max_hp;
+    int my_damage = weapon_equiped->att;
+    int enemy_hp=curr_enemy->hp;
+
+    vec.x=0;
+    vec.y=0;
 }
 
 int main(int argc, char **argv){

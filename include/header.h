@@ -10,6 +10,8 @@
 #define COMBAT 2
 #define MENU 3
 
+#define max_hp 20
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -42,6 +44,11 @@ typedef struct ENEMY{
     int att;
     int def;
 }Enemy;
+
+typedef struct VECTOR{
+    int x;
+    int y;
+}Vector;
 
 static void on_keyboard_encounter(unsigned char key, int x, int y);
 static void on_keyboard_walking(unsigned char key, int x, int y);
@@ -76,7 +83,6 @@ void draw_conversation();
 
 void switch_to_combat();
 void highlight_current();
-//void bullet_hell();
 void init();
 
 void remove_from_inv(int item_selected,CVOR** inv);
@@ -92,6 +98,9 @@ float t=0;
 
 char* wtp;
 CVOR* inv;
+Enemy* curr_enemy;
+Item* weapon_equiped;
+Vector vec;
 
 int game_state=1; // TODO GAME STATE
 int action_highlited=0;

@@ -151,6 +151,7 @@ static void on_keyboard_inventory(unsigned char key, int x, int y){
 
         case ' ':
             in_menu_menu=0;
+            item_selected=0;
             remove_from_inv(item_selected,&inv);
                 switch_to_combat();
             break;

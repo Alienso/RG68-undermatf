@@ -4,6 +4,7 @@
 #define _INVENTORY_
 
 #include "header.h"
+#include "Items_Enemies.h"
 
 CVOR* napravi_cvor(Item* i){
 	CVOR* novi_cvor;
@@ -145,14 +146,12 @@ Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable){
 void init_inv(){
 
 	inv=NULL;
-
-	Item* knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,1);
-	Item* olovka=new_Item("Olovka\0","Tupa je\0",2,0,0,1);
 	
-	add_to_inv(knjiga,&inv);
-	add_to_inv(olovka,&inv);
+	add_to_inv(Knjiga,&inv);
+	add_to_inv(Olovka,&inv);
+	add_to_inv(HPPotion,&inv);
 
-	items_in_inv=2;
+	items_in_inv=3;
 
 
 }

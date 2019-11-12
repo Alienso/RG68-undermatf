@@ -433,6 +433,7 @@ void draw_inventory(){
                 draw_text(tmp,-0.85+i*0.5,-0.7-i/4*0.3,1,0.5,0);
             }
         }
+        else i--;
 		tekuci_cvor=tekuci_cvor->sledeci;
         free (tmp);
 	}
