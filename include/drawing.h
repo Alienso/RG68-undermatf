@@ -25,6 +25,26 @@ static void on_display_combat(void){
     draw_base();
     draw_hearth();
 
+    glPointSize(20);
+    float r = (rand()%100)/100.0;
+    float g = (rand()%100)/100.0;
+    float b = (rand()%100)/100.0;
+    glColor3f(r,g,b);
+    glBegin(GL_POINTS);
+        glVertex2f(0.9,0.9);
+    glEnd();
+
+    current_time=time(NULL);
+    if (current_time-start_time==1){
+        fps=fps_counter;
+        fps_counter=0;
+        start_time=current_time;
+    }
+    fps_counter++;
+    sprintf(wtp,"%d",fps);
+    draw_text(wtp,0.8,0.8,1,1,1);
+    
+    glutPostRedisplay();
     glutSwapBuffers();
 }
 
@@ -91,7 +111,7 @@ void draw_base(){
 
     	glBegin(GL_LINES);
 	        glVertex2f(-0.6,0.925);
-	        glVertex2f((float)(hp/20.0)-0.6,0.925);
+	        glVertex2f((float)(max_hp/20.0)-0.6,0.925);
 	    glEnd();
 
     draw_text("ENEMY:\0",-0.9,0.8,1,0,0);

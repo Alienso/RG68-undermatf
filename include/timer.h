@@ -52,8 +52,38 @@ static void on_timer_combat(int value){
     if (value != TIMER_COMBAT)
         return;
 
+    enemy_turn=0;
+    vec.x=0;
+    vec.y=0;
     glutDisplayFunc(on_display_encounter);
     glutKeyboardFunc(on_keyboard_encounter);
+}
+
+static void on_timer_move_combat(int value){
+
+    if (value != TIMER_MOVE_COMBAT)
+        return;
+
+	if (vec.y==1 && y_hearth>=0.11)
+        goto dalje;
+
+	if (vec.y==-1 && y_hearth<=-0.575)
+        goto dalje;
+
+	if (vec.x==-1 && x_hearth<=-0.34)
+        goto dalje;
+
+	if (vec.x==1 && x_hearth>=0.34)
+        goto dalje;
+
+    x_hearth+=vec.x*0.01;
+    y_hearth+=vec.y*0.01;
+    
+    dalje: //tmp resenje
+    if (enemy_turn)
+        glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
+
+    return;
 }
 
 

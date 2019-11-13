@@ -11,31 +11,59 @@ static void on_keyboard_combat(unsigned char key, int x, int y){
         break;
 
     case 'w':
-		if (y_hearth>=0.11)
-			break;
-       	y_hearth+=0.01;
+        if (vec.y==1)
+            break;
+        vec.y+=1;
         break;
 
     case 's':
-		if (y_hearth<=-0.575)
-			break;
-		y_hearth-=0.01;
+        if (vec.y==-1)
+            break;
+		vec.y-=1;
         break;
 
     case 'a':
-		if (x_hearth<=-0.34)
-			break;
-		x_hearth-=0.01;
+        if (vec.x==-1)
+            break;
+		vec.x-=1;
         break;
 
     case 'd':
-		if (x_hearth>=0.34)
-			break;
-		x_hearth+=0.01;
+        if (vec.x==1)
+            break;
+		vec.x+=1;
         break;
     }
 
    glutPostRedisplay();
+}
+
+static void on_keyboard_up_combat(unsigned char key, int x,int y){
+
+        switch (key) {
+    case 27:
+        exit(0);
+        break;
+
+    case 'w':
+        vec.y-=1;
+       	
+        break;
+
+    case 's':
+		vec.y+=1;
+        break;
+
+    case 'a':
+		vec.x+=1;
+        break;
+
+    case 'd':
+		vec.x-=1;
+        break;
+    }
+
+    glutPostRedisplay();
 }
 
 static void on_keyboard_encounter(unsigned char key, int x, int y){
@@ -131,9 +159,7 @@ static void on_keyboard_to_encounter(unsigned char key, int x, int y){
 static void on_keyboard_to_combat(unsigned char key, int x, int y){
     if (key==' '){
         in_menu_menu=0;
-        glutDisplayFunc(on_display_combat);
-        glutTimerFunc(5000,on_timer_combat,TIMER_COMBAT);
-        glutKeyboardFunc(on_keyboard_combat);
+        switch_to_combat();
     }
     glutPostRedisplay();
 }

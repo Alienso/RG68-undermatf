@@ -4,6 +4,7 @@
 #define TIMER_NEXT 0
 #define TIMER_TEXT 1
 #define TIMER_COMBAT 2
+#define TIMER_MOVE_COMBAT 3
 
 #define WALKING 0
 #define ENCOUNTER 1
@@ -16,6 +17,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 #include <GL/glut.h>
 
 typedef struct ITEM{
@@ -56,16 +58,20 @@ static void on_keyboard_combat(unsigned char key, int x, int y);
 static void on_keyboard_talk(unsigned char key, int x, int y);
 static void on_keyboard_mercy(unsigned char key, int x, int y);
 static void on_keyboard_none(unsigned char key, int x, int y);
+
 static void on_keyboard_inventory(unsigned char key, int x, int y);
 static void on_keyboard_to_encouter(unsigned char key, int x, int y);
 static void on_keyboard_to_combat(unsigned char key, int x, int y);
 static void on_keyboard_to_walking(unsigned char key, int x, int y);
+
+static void on_keyboard_up_combat(unsigned char key, int x,int y);
 
 static void on_timer_encounter(int value);
 static void on_timer_walking(int value);
 static void on_timer_combat(int value);
 static void on_timer_next(int value);
 static void on_timer_text(int value);
+static void on_timer_move_combat(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);
@@ -95,13 +101,20 @@ Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def);
 float x_hearth=0;
 float y_hearth=0;
 float t=0;
+time_t start_time;
+time_t current_time;
+int fps=0;
+int fps_counter=0;
 
+//STRUCT-------------------------------------------------------
 char* wtp;
 CVOR* inv;
 Enemy* curr_enemy;
 Item* weapon_equiped;
 Vector vec;
 
+
+//FLAGS---------------------------------------------------------
 int game_state=1; // TODO GAME STATE
 int action_highlited=0;
 int action_selected=0;
@@ -113,6 +126,7 @@ int mercy=0;
 int can_spare=0;
 int item_selected=0;
 int items_in_inv=0;
+int enemy_turn=0;
 
 int win_screen=0;
 int escape_screen=0;
