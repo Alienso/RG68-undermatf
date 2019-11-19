@@ -147,11 +147,9 @@ void init_inv(){
 
 	inv=NULL;
 	
-	add_to_inv(Knjiga,&inv);
-	add_to_inv(Olovka,&inv);
 	add_to_inv(HPPotion,&inv);
 
-	items_in_inv=3;
+	items_in_inv=1;
 
 
 }
