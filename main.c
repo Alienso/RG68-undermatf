@@ -17,6 +17,7 @@ void init(){
         exit(1);
     }
 
+    srand(time(NULL));
     init_Items_Enemies();
     init_inv();
     
@@ -54,7 +55,15 @@ int main(int argc, char **argv){
 }
 
 void switch_to_combat(){
+    enemy_turn=1;
     glutDisplayFunc(on_display_combat);
     glutKeyboardFunc(on_keyboard_combat);
     glutTimerFunc(5000,on_timer_combat,TIMER_COMBAT);
+    glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
+    glutKeyboardUpFunc(on_keyboard_up_combat);
+
+    start_time=time(NULL);
+
+    vec.x=0;
+    vec.y=0;
 }
