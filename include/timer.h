@@ -3,14 +3,6 @@
 
 #include "header.h"
 
-int text_head=0;
-float text_x=-0.9;
-float text_y=-0.7;
-int chars_written=0;
-int rows_written=0;
-char* s;
-
-
 static void on_timer_next(int value){
     
     if (value != TIMER_NEXT)
@@ -19,42 +11,17 @@ static void on_timer_next(int value){
 }
 
 
-/*static void on_timer_text(int value){
-
-    if (value != TIMER_TEXT)
-        return;
-
-    if (wtp[text_head]=='\0'){
-        rows_written=0;
-        chars_written=0;
-        text_head=0;
-        glutKeyboardFunc(on_keyboard_next);
-        return;
-    }
-    
-    //s=(char*)malloc(2*sizeof(char));
-    //s[0]=wtp[text_head];
-   // s[1]='\0';
-    
-    chars_written+=1;
-    text_head+=1;
-    if (chars_written==20){
-        rows_written+=1;
-        chars_written=0;
-    }
-
-    glutTimerFunc(20,on_timer_text,TIMER_TEXT);
-
-}*/
-
 static void on_timer_combat(int value){
     
     if (value != TIMER_COMBAT)
         return;
 
+    t=0;
     enemy_turn=0;
     vec.x=0;
     vec.y=0;
+    x_hearth=0;
+    y_hearth=0;
     glutDisplayFunc(on_display_encounter);
     glutKeyboardFunc(on_keyboard_encounter);
 }
@@ -64,28 +31,44 @@ static void on_timer_move_combat(int value){
     if (value != TIMER_MOVE_COMBAT)
         return;
 
-	if (vec.y==1 && y_hearth>=0.11)
-        goto dalje;
+	if (vec.y==1 && y_hearth>=0.11){
+        x_hearth-=vec.x*0.01;
+        y_hearth-=vec.y*0.01;
+    }
 
-	if (vec.y==-1 && y_hearth<=-0.575)
-        goto dalje;
+	if (vec.y==-1 && y_hearth<=-0.575){
+        x_hearth-=vec.x*0.01;
+        y_hearth-=vec.y*0.01;
+    }
 
-	if (vec.x==-1 && x_hearth<=-0.34)
-        goto dalje;
+	if (vec.x==-1 && x_hearth<=-0.34){
+        x_hearth-=vec.x*0.01;
+        y_hearth-=vec.y*0.01;
+    }
 
-	if (vec.x==1 && x_hearth>=0.34)
-        goto dalje;
+	if (vec.x==1 && x_hearth>=0.34){
+        x_hearth-=vec.x*0.01;
+        y_hearth-=vec.y*0.01;
+    }
 
     x_hearth+=vec.x*0.01;
     y_hearth+=vec.y*0.01;
     
-    dalje: //tmp resenje
+    t+=20/5000.0;
     if (enemy_turn)
         glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
 
     return;
 }
 
+static void on_timer_invulnerable(int value){
+
+    if (value!=TIMER_INVULNERABLE)
+        return;
+
+    invulnerable=0;
+    return;
+}
 
 
 

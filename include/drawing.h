@@ -41,8 +41,10 @@ static void on_display_combat(void){
         start_time=current_time;
     }
     fps_counter++;
-    sprintf(wtp,"%d",fps);
+    sprintf(wtp,"%f",t);
     draw_text(wtp,0.8,0.8,1,1,1);
+
+    bullet_hell_2();
     
     glutPostRedisplay();
     glutSwapBuffers();
@@ -111,7 +113,7 @@ void draw_base(){
 
     	glBegin(GL_LINES);
 	        glVertex2f(-0.6,0.925);
-	        glVertex2f((float)(max_hp/20.0)-0.6,0.925);
+	        glVertex2f((float)(hp/20.0)-0.6,0.925);
 	    glEnd();
 
     draw_text("ENEMY:\0",-0.9,0.8,1,0,0);

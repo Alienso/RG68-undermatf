@@ -5,6 +5,7 @@
 #define TIMER_TEXT 1
 #define TIMER_COMBAT 2
 #define TIMER_MOVE_COMBAT 3
+#define TIMER_INVULNERABLE 4
 
 #define WALKING 0
 #define ENCOUNTER 1
@@ -72,10 +73,14 @@ static void on_timer_combat(int value);
 static void on_timer_next(int value);
 static void on_timer_text(int value);
 static void on_timer_move_combat(int value);
+static void on_timer_invulnerable(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
+
+void bullet_hell_1();
+void bullet_hell_2();
 
 void draw_text(char niska[], GLfloat x_val, GLfloat y_val,float r_,float g_,float b_);
 void draw_hearth();
@@ -87,6 +92,7 @@ void draw_escape();
 void draw_mercy();
 void draw_conversation();
 
+void check_collision(float x,float y);
 void switch_to_combat();
 void highlight_current();
 void init();
@@ -127,6 +133,7 @@ int can_spare=0;
 int item_selected=0;
 int items_in_inv=0;
 int enemy_turn=0;
+int invulnerable=0;
 
 int win_screen=0;
 int escape_screen=0;

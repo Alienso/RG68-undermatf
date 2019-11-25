@@ -4,6 +4,7 @@
 #include "./include/header.h"
 #include "./include/text.h"
 #include "./include/drawing.h"
+#include "./include/bullet_hell.h"
 #include "./include/keyboard.h"
 #include "./include/timer.h"
 #include "./include/inventory.h"
@@ -66,4 +67,14 @@ void switch_to_combat(){
 
     vec.x=0;
     vec.y=0;
+}
+
+void check_collision(float x,float y){
+
+    if (!invulnerable && (x_hearth>x-0.02 && x_hearth<x+0.02) && (y_hearth>y-0.02 && y_hearth<y+0.02)){
+        hp-=5;
+        invulnerable=1;
+        glutTimerFunc(1250,on_timer_invulnerable,TIMER_INVULNERABLE);
+    }
+    return;
 }
