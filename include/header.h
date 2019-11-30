@@ -79,9 +79,6 @@ static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
 
-void bullet_hell_1();
-void bullet_hell_2();
-
 void draw_text(char niska[], GLfloat x_val, GLfloat y_val,float r_,float g_,float b_);
 void draw_hearth();
 void draw_base();
@@ -141,5 +138,26 @@ int escape_screen=0;
 int hp=20;
 int my_damage = 5;
 int enemy_hp=20;
+
+void bullet_hell_1();
+void bullet_hell_2();
+void bullet_hell_3();
+void bullet_hell_4();
+void bullet_hell_5();
+void bullet_hell_6();
+void bullet_hell_7();
+void bullet_hell_8();
+void bullet_hell_9();
+void bullet_hell_10();
+void bullet_hell_11();
+void bullet_hell_12();
+void bullet_hell_13();
+void bullet_hell_14();
+void bullet_hell_15();
+void bullet_hell_16();
+void bullet_hell_17();
+void bullet_hell_18();
+void bullet_hell_19();
+void bullet_hell_20();
 
 #endif
