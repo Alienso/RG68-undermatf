@@ -95,7 +95,7 @@ static void on_display_combat(void){
     sprintf(wtp,"%f",t);
     draw_text(wtp,0.8,0.8,1,1,1);
 
-    bullet_hell_15();
+    bullet_hell_14();
     
     glutPostRedisplay();
     glutSwapBuffers();
