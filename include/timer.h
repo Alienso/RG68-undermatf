@@ -28,8 +28,9 @@ static void on_timer_combat(int value){
 
 static void on_timer_move_combat(int value){
 
-    if (value != TIMER_MOVE_COMBAT)
+    if (value != TIMER_MOVE_COMBAT){
         return;
+    }
 
 	if (vec.y==1 && y_hearth>=0.11){
         x_hearth-=vec.x*0.01;

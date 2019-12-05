@@ -143,15 +143,4 @@ Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable){
     return new_Item;
 }
 
-void init_inv(){
-
-	inv=NULL;
-	
-	add_to_inv(HPPotion,&inv);
-
-	items_in_inv=1;
-
-
-}
-
 #endif

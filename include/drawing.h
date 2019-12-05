@@ -17,6 +17,57 @@ static void on_display_encounter(void){
 }
 
 static void on_display_walking(void){
+
+    glClear(GL_COLOR_BUFFER_BIT);
+    /* Crtaju se vrata kuce. */
+   /* glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBegin(GL_QUADS);
+
+        glTexCoord2f(0, 0);
+        glVertex2f(0, 0);
+
+        glTexCoord2f(1, 0);
+        glVertex2f(1, 0);
+
+        glTexCoord2f(1, 1);
+        glVertex2f(1, 1);
+
+        glTexCoord2f(0, 1);
+        glVertex2f(0, 1);
+    glEnd();*/
+
+    /* Crta se zid kuce. */
+    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBegin(GL_QUADS);
+
+        glTexCoord2f(0, 0);
+        glVertex2f(-1, -1);
+
+        glTexCoord2f(1, 0);
+        glVertex2f(1, -1);
+
+        glTexCoord2f(1, 1);
+        glVertex2f(1, 1);
+
+        glTexCoord2f(0, 1);
+        glVertex2f(-1, 1);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    /*glColor3f(1, 0, 0);
+    glBegin(GL_QUADS);
+
+        glVertex2f(0, 0);
+        glVertex2f(1, 0);
+        glVertex2f(1, 1);
+        glVertex2f(0, 1);
+    glEnd();*/
+
+    /* Iskljucujemo aktivnu teksturu */
+    
+
+    /* Nova slika se salje na ekran. */
+    glutSwapBuffers();
     return;
 }
 

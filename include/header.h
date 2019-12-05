@@ -19,6 +19,7 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
+#include <assert.h>
 #include <GL/glut.h>
 
 typedef struct ITEM{
@@ -93,6 +94,10 @@ void check_collision(float x,float y);
 void switch_to_combat();
 void highlight_current();
 void init();
+void initTextures();
+void init_inv();
+void init_Items_Enemies();
+
 
 void remove_from_inv(int item_selected,CVOR** inv);
 void add_to_inv(Item* item,CVOR** inv);
@@ -100,7 +105,7 @@ void add_to_inv(Item* item,CVOR** inv);
 Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable);
 Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def);
 
-
+extern GLuint names[2];
 float x_hearth=0;
 float y_hearth=0;
 float t=0;

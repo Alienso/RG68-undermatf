@@ -9,47 +9,26 @@
 #include "./include/timer.h"
 #include "./include/inventory.h"
 #include "./include/Items_Enemies.h"
-
-void init(){
-
-    wtp=(char*)calloc(200,sizeof(char));
-    if (wtp==NULL){
-        fprintf(stderr,"WTP");
-        exit(1);
-    }
-
-    srand(time(NULL));
-    init_Items_Enemies();
-    init_inv();
-    
-    weapon_equiped=Olovka;
-    curr_enemy=Programer;
-
-    int hp=max_hp;
-    int my_damage = weapon_equiped->att;
-    int enemy_hp=curr_enemy->hp;
-
-    vec.x=0;
-    vec.y=0;
-}
+#include "./include/image.h"
+#include "./include/inits.h"
 
 int main(int argc, char **argv){
 
-    init();
-
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+    glEnable(GL_TEXTURE_2D);
 
     glutInitWindowSize(700, 700);
     glutInitWindowPosition(300, 0);
     glutCreateWindow(argv[0]);
 
     glutKeyboardFunc(on_keyboard_encounter);
-    glutDisplayFunc(on_display_encounter);
+    glutDisplayFunc(on_display_walking);
 
     glClearColor(0, 0, 0, 0);
     /*glPointSize(6);*/ 
 
+    init();
     glutMainLoop();
 
     return 0;
