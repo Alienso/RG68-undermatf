@@ -157,7 +157,7 @@ void bullet_hell_9(){
     glColor3f(1, 1, 1);
 	glPointSize(2);
     glBegin(GL_POINTS);
-        for (float te=0;te<t*2*3.14;te+=0.001){
+        for (float te=0;te<t*4*3.14;te+=0.001){
             x=t*(cos(te)+cos(6*te)/2+sin(14*te)/3);
             y=t*(sin(te)+sin(6*te)/2+cos(14*te)/3)-0.2;
             glVertex2f(x,y);

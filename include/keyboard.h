@@ -87,6 +87,7 @@ static void on_keyboard_encounter(unsigned char key, int x, int y){
 
         if (action_selected==0){
             enemy_hp-=my_damage;
+            random_attack=rand()%5;
             if (enemy_hp<=0){
                 glutDisplayFunc(draw_win);
                 glutKeyboardFunc(on_keyboard_to_walking);

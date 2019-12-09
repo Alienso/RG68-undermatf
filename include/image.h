@@ -9,7 +9,7 @@ typedef struct {
   unsigned short reserved1;
   unsigned short reserved2;
   unsigned int offsetbits;
-} BITMAPFILEHEADER;
+} BITMAPFILEHEADER2;
 
 typedef struct {
   unsigned int size;
@@ -23,7 +23,7 @@ typedef struct {
   int ypelspermeter;
   unsigned int colorsused;
   unsigned int colorsimportant;
-} BITMAPINFOHEADER;
+} BITMAPINFOHEADER2;
 
 /* Struktura za smestanje podataka o slici. */
 typedef struct Image {
@@ -85,9 +85,13 @@ void image_done(Image *image) {
 
 void image_read(Image *image, char *filename) {
 
+  int x; //JUNK
   FILE *file;
-  BITMAPFILEHEADER bfh;
-  BITMAPINFOHEADER bih;
+  FILE* izlaz = fopen("izlaz.txt","w");
+    if (izlaz==NULL)
+      exit(1);
+  BITMAPFILEHEADER2 bfh;
+  BITMAPINFOHEADER2 bih;
   unsigned int i;
   unsigned char r, g, b, a;
 
@@ -166,6 +170,12 @@ void image_read(Image *image, char *filename) {
      * da oni (ta 4 bajta) predstavljaju R, G, B i A komponentu boje (1 bajt po 
      * komponenti).
      */
+    	
+    /*for (i=0;i<2;i++){
+      fread(&x,sizeof(char),1,file);
+      fprintf(izlaz,"1");
+    }*/
+    
     for (i = 0; i < bih.width * bih.height; i++) {
       fread(&b, sizeof(char), 1, file);
       fread(&g, sizeof(char), 1, file);
@@ -176,6 +186,8 @@ void image_read(Image *image, char *filename) {
       image->pixels[4 * i + 1] = g;
       image->pixels[4 * i + 2] = b;
       image->pixels[4 * i + 3] = a;
+
+      fprintf(izlaz,"%d,%d,%d,%d\n",r,g,b,a);
     }
 
   /* Zatvara se fajl. */

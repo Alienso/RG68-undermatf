@@ -74,11 +74,17 @@ void init_Items_Enemies(){
     Knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,0);
 	Olovka=new_Item("Olovka\0","Tupa je\0",2,0,0,0);
 
-    Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",10,2,0);
-    Menadzer = new_Enemy("Menadzer sa FON-a\0","smth\0","smthh\0",20,5,5);
-    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,7,5);
-    MenadzerKvaliteta = new_Enemy("Menadzer Kvaliteta\0","dsad\0","dasew\0",30,4,8);
-    Boss = new_Enemy("Final Boss\0","sdas\0","ewqe\0",50,10,5);
+    int programer_attacks[5]={0,1,2,3,4};
+    int menadzer_attacks[5]={5,6,7,8,9};
+    int operacioni_attacks[5]={10,11,12,13,14};
+    int menadzer_kvaliteta_attacks[5]={15,16,17,18,19};
+    int boss_attacks[5]={20,21,22,23,24};
+
+    Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",10,2,0,programer_attacks);
+    Menadzer = new_Enemy("Menadzer sa FON-a\0","smth\0","smthh\0",20,5,5,menadzer_attacks);
+    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,7,5,operacioni_attacks);
+    MenadzerKvaliteta = new_Enemy("Menadzer Kvaliteta\0","dsad\0","dasew\0",30,4,8,menadzer_kvaliteta_attacks);
+    Boss = new_Enemy("Final Boss\0","sdas\0","ewqe\0",50,10,5,boss_attacks);
 
 }
 

@@ -23,10 +23,9 @@ int main(int argc, char **argv){
     glutCreateWindow(argv[0]);
 
     glutKeyboardFunc(on_keyboard_encounter);
-    glutDisplayFunc(on_display_walking);
+    glutDisplayFunc(on_display_encounter);
 
     glClearColor(0, 0, 0, 0);
-    /*glPointSize(6);*/ 
 
     init();
     glutMainLoop();

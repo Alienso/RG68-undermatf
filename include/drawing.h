@@ -19,24 +19,8 @@ static void on_display_encounter(void){
 static void on_display_walking(void){
 
     glClear(GL_COLOR_BUFFER_BIT);
-    /* Crtaju se vrata kuce. */
-   /* glBindTexture(GL_TEXTURE_2D, names[0]);
-    glBegin(GL_QUADS);
 
-        glTexCoord2f(0, 0);
-        glVertex2f(0, 0);
-
-        glTexCoord2f(1, 0);
-        glVertex2f(1, 0);
-
-        glTexCoord2f(1, 1);
-        glVertex2f(1, 1);
-
-        glTexCoord2f(0, 1);
-        glVertex2f(0, 1);
-    glEnd();*/
-
-    /* Crta se zid kuce. */
+    //Crta se pozadina
     glBindTexture(GL_TEXTURE_2D, names[0]);
     glBegin(GL_QUADS);
 
@@ -53,20 +37,24 @@ static void on_display_walking(void){
         glVertex2f(-1, 1);
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
-    
-    /*glColor3f(1, 0, 0);
+
+     glBindTexture(GL_TEXTURE_2D, names[1]);
     glBegin(GL_QUADS);
 
+        glTexCoord2f(0, 0);
         glVertex2f(0, 0);
-        glVertex2f(1, 0);
-        glVertex2f(1, 1);
-        glVertex2f(0, 1);
-    glEnd();*/
 
-    /* Iskljucujemo aktivnu teksturu */
+        glTexCoord2f(1, 0);
+        glVertex2f(1, 0);
+
+        glTexCoord2f(1, 1);
+        glVertex2f(1, 1);
+
+        glTexCoord2f(0, 1);
+        glVertex2f(0, 1);
+    glEnd();
     
 
-    /* Nova slika se salje na ekran. */
     glutSwapBuffers();
     return;
 }
@@ -95,7 +83,7 @@ static void on_display_combat(void){
     sprintf(wtp,"%f",t);
     draw_text(wtp,0.8,0.8,1,1,1);
 
-    bullet_hell_14();
+    (*att_ptrs[curr_enemy->attacks[random_attack]])();
     
     glutPostRedisplay();
     glutSwapBuffers();
