@@ -17,6 +17,8 @@ static void on_keyboard_to_combat(unsigned char key, int x, int y);
 static void on_keyboard_to_walking(unsigned char key, int x, int y);
 
 static void on_keyboard_up_combat(unsigned char key, int x,int y);
+static void on_keyboard_up_walking(unsigned char key, int x,int y);
+
 
 static void on_timer_encounter(int value);
 static void on_timer_walking(int value);
@@ -24,6 +26,7 @@ static void on_timer_combat(int value);
 static void on_timer_next(int value);
 static void on_timer_text(int value);
 static void on_timer_move_combat(int value);
+static void on_timer_move_walking(int value);
 static void on_timer_invulnerable(int value);
 
 static void on_display_encounter(void);

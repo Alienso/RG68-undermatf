@@ -6,11 +6,14 @@
 #define TIMER_COMBAT 2
 #define TIMER_MOVE_COMBAT 3
 #define TIMER_INVULNERABLE 4
+#define TIMER_MOVE_WALKING 5
 
 #define WALKING 0
 #define ENCOUNTER 1
 #define COMBAT 2
 #define MENU 3
+
+#define FOV 64
 
 #define max_hp 20
 

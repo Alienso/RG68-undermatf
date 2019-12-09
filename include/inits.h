@@ -118,7 +118,12 @@ void init(){
     int hp=max_hp;
     int my_damage = weapon_equiped->att;
     int enemy_hp=curr_enemy->hp;
+    absolute_position_x=64;
+    absolute_position_y=64;
+    walking=0;
 
+    walking_vec.x=0;
+    walking_vec.y=0;
     vec.x=0;
     vec.y=0;
 }

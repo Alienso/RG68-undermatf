@@ -62,6 +62,41 @@ static void on_timer_move_combat(int value){
     return;
 }
 
+static void on_timer_move_walking(int value){
+
+    if (value != TIMER_MOVE_WALKING){
+        return;
+    }
+
+	if (walking_vec.y==1 && absolute_position_y>=current_texture_h){
+        absolute_position_x-=walking_vec.x;
+        absolute_position_y-=walking_vec.y;
+    }
+
+	if (walking_vec.y==-1 && absolute_position_y<=1){
+        absolute_position_x-=walking_vec.x;
+        absolute_position_y-=walking_vec.y;
+    }
+
+	if (walking_vec.x==-1 && absolute_position_x<=1){
+        absolute_position_x-=walking_vec.x;
+        absolute_position_y-=walking_vec.y;
+    }
+
+	if (walking_vec.x==1 && absolute_position_x>=current_texture_w){
+        absolute_position_x-=walking_vec.x;
+        absolute_position_y-=walking_vec.y;
+    }
+
+    absolute_position_x+=walking_vec.x;
+    absolute_position_y+=walking_vec.y;
+    
+    if (walking)
+        glutTimerFunc(20,on_timer_move_walking,TIMER_MOVE_WALKING);
+
+    return;
+}
+
 static void on_timer_invulnerable(int value){
 
     if (value!=TIMER_INVULNERABLE)

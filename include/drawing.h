@@ -22,39 +22,49 @@ static void on_display_walking(void){
 
     //Crta se pozadina
     glBindTexture(GL_TEXTURE_2D, names[0]);
+
+    int miplevel = 0;
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &current_texture_w);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_HEIGHT, &current_texture_h);
+
     glBegin(GL_QUADS);
 
-        glTexCoord2f(0, 0);
+        glTexCoord2f((float)(absolute_position_x-FOV)/current_texture_w, (float)(absolute_position_y-FOV)/current_texture_h);
         glVertex2f(-1, -1);
 
-        glTexCoord2f(1, 0);
+        glTexCoord2f((float)(absolute_position_x+FOV)/current_texture_w, (float)(absolute_position_y-FOV)/current_texture_h);
         glVertex2f(1, -1);
 
-        glTexCoord2f(1, 1);
+        glTexCoord2f((float)(absolute_position_x+FOV)/current_texture_w, (float)(absolute_position_y+FOV)/current_texture_h);
         glVertex2f(1, 1);
 
-        glTexCoord2f(0, 1);
+        glTexCoord2f((float)(absolute_position_x-FOV)/current_texture_w, (float)(absolute_position_y+FOV)/current_texture_h);
         glVertex2f(-1, 1);
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
 
-     glBindTexture(GL_TEXTURE_2D, names[1]);
+    //crta se karakter
+    glBindTexture(GL_TEXTURE_2D, names[1]);
     glBegin(GL_QUADS);
 
         glTexCoord2f(0, 0);
-        glVertex2f(0, 0);
+        glVertex2f(-0.05, -0.05);
 
         glTexCoord2f(1, 0);
-        glVertex2f(1, 0);
+        glVertex2f(0.05, -0.05);
 
         glTexCoord2f(1, 1);
-        glVertex2f(1, 1);
+        glVertex2f(0.05, 0.05);
 
         glTexCoord2f(0, 1);
-        glVertex2f(0, 1);
+        glVertex2f(-0.05, 0.05);
     glEnd();
-    
 
+    sprintf(wtp,"%d %d",absolute_position_x,absolute_position_y);
+    //sprintf(wtp,"%d %d",walking_vec.x,walking_vec.y);
+    draw_text(wtp,-0.8,-0.8,1,1,1);
+
+    glutPostRedisplay();
     glutSwapBuffers();
     return;
 }
@@ -387,6 +397,10 @@ void draw_conversation(){
 
 void draw_win(){
 
+    glClear(GL_COLOR_BUFFER_BIT);
+    draw_base();
+    draw_hearth();
+    
     glColor3f(0,0,0);
     glBegin(GL_POLYGON);
         glVertex2f(-1,-1);
@@ -414,12 +428,18 @@ void draw_win(){
     glEnd();
 
 
-    draw_text("Congratulations!\0",-0.8,-0.5,1,1,1);
-    draw_text("You Won 15g and 20XP\0",-0.9,-0.5,1,1,1);
+    draw_text("Congratulations!\0",-0.25,-0.8,1,1,1);
+    draw_text("You Won 15g and 20XP\0",-0.45,-0.9,1,1,1);
+
+    glutSwapBuffers();
 }
 
 void draw_escape(){
 
+    glClear(GL_COLOR_BUFFER_BIT);
+    draw_base();
+    draw_hearth();
+
     glColor3f(0,0,0);
     glBegin(GL_POLYGON);
         glVertex2f(-1,-1);
@@ -447,8 +467,10 @@ void draw_escape(){
     glEnd();
 
 
-    draw_text("You Lose!\0",-0.8,-0.5,1,1,1);
-    draw_text("You Earned 0g and 0XP\0",-0.9,-0.5,1,1,1);
+    draw_text("You Lose\0",-0.25,-0.8,1,1,1);
+    draw_text("You Won 0g and 0XP\0",-0.45,-0.9,1,1,1);
+
+    glutSwapBuffers();
 }
 
 void draw_inventory(){

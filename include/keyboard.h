@@ -40,7 +40,7 @@ static void on_keyboard_combat(unsigned char key, int x, int y){
 
 static void on_keyboard_up_combat(unsigned char key, int x,int y){
 
-        switch (key) {
+    switch (key) {
     case 27:
         exit(0);
         break;
@@ -60,6 +60,69 @@ static void on_keyboard_up_combat(unsigned char key, int x,int y){
 
     case 'd':
 		vec.x-=1;
+        break;
+    }
+
+    glutPostRedisplay();
+}
+
+static void on_keyboard_walking(unsigned char key, int x, int y){
+
+    switch (key) {
+    case 27:
+        exit(0);
+        break;
+
+    case 'w':
+        if (walking_vec.y==1)
+            break;
+        walking_vec.y+=1;
+        break;
+
+    case 's':
+        if (walking_vec.y==-1)
+            break;
+		walking_vec.y-=1;
+        break;
+
+    case 'a':
+        if (walking_vec.x==-1)
+            break;
+		walking_vec.x-=1;
+        break;
+
+    case 'd':
+        if (walking_vec.x==1)
+            break;
+		walking_vec.x+=1;
+        break;
+    }
+
+   glutPostRedisplay();
+}
+
+static void on_keyboard_up_walking(unsigned char key, int x,int y){
+
+    switch (key) {
+    case 27:
+        exit(0);
+        break;
+
+    case 'w':
+        walking_vec.y-=1;
+       	
+        break;
+
+    case 's':
+		walking_vec.y+=1;
+        break;
+
+    case 'a':
+		walking_vec.x+=1;
+        break;
+
+    case 'd':
+		walking_vec.x-=1;
         break;
     }
 
@@ -167,7 +230,11 @@ static void on_keyboard_to_combat(unsigned char key, int x, int y){
 
 static void on_keyboard_to_walking(unsigned char key, int x, int y){
     if (key==' '){
+        walking=1;
+        glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
         glutKeyboardFunc(on_keyboard_walking);
+        glutKeyboardUpFunc(on_keyboard_up_walking);
+        glutDisplayFunc(on_display_walking);
     }
     glutPostRedisplay();
 }
@@ -205,8 +272,6 @@ static void on_keyboard_inventory(unsigned char key, int x, int y){
 }
 
 static void on_keyboard_none(unsigned char key, int x, int y){}
-
-static void on_keyboard_walking(unsigned char key, int x, int y){}
 
 static void on_keyboard_talk(unsigned char key, int x, int y){}
 #endif
