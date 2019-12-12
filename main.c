@@ -15,12 +15,13 @@
 int main(int argc, char **argv){
 
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glEnable(GL_TEXTURE_2D);
 
     glutInitWindowSize(700, 700);
     glutInitWindowPosition(300, 0);
     glutCreateWindow(argv[0]);
+    glutReshapeFunc(resize);
 
     glutKeyboardFunc(on_keyboard_encounter);
     glutDisplayFunc(on_display_encounter);
@@ -55,4 +56,8 @@ void check_collision(float x,float y){
         glutTimerFunc(1250,on_timer_invulnerable,TIMER_INVULNERABLE);
     }
     return;
+}
+
+void resize(int width, int height) {
+    glutReshapeWindow( 700, 700);
 }

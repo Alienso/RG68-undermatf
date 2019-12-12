@@ -41,26 +41,30 @@ static void on_display_walking(void){
         glTexCoord2f((float)(absolute_position_x-FOV)/current_texture_w, (float)(absolute_position_y+FOV)/current_texture_h);
         glVertex2f(-1, 1);
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
 
     //crta se karakter
-    glBindTexture(GL_TEXTURE_2D, names[1]);
+    glBindTexture(GL_TEXTURE_2D, names[player_side]);
+    glEnable(GL_BLEND);
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     glBegin(GL_QUADS);
 
         glTexCoord2f(0, 0);
-        glVertex2f(-0.05, -0.05);
+        glVertex2f(-0.1, -0.1);
 
         glTexCoord2f(1, 0);
-        glVertex2f(0.05, -0.05);
+        glVertex2f(0.1, -0.1);
 
         glTexCoord2f(1, 1);
-        glVertex2f(0.05, 0.05);
+        glVertex2f(0.1, 0.1);
 
         glTexCoord2f(0, 1);
-        glVertex2f(-0.05, 0.05);
+        glVertex2f(-0.1, 0.1);
     glEnd();
 
-    sprintf(wtp,"%d %d",absolute_position_x,absolute_position_y);
+    glDisable(GL_BLEND);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,player_side);
     //sprintf(wtp,"%d %d",walking_vec.x,walking_vec.y);
     draw_text(wtp,-0.8,-0.8,1,1,1);
 

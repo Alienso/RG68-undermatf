@@ -74,27 +74,56 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'w':
-        if (walking_vec.y==1)
+        if (walking_vec.y==1){
+            player_side=2;
             break;
+        }
         walking_vec.y+=1;
+        player_side=2;
+        if (!really_walking)
+             glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
+        really_walking=1;
         break;
 
     case 's':
-        if (walking_vec.y==-1)
+        if (walking_vec.y==-1){
+            player_side=1;
             break;
+        }
 		walking_vec.y-=1;
+        player_side=1;
+        if (!really_walking)
+             glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
+        really_walking=1;
         break;
 
     case 'a':
-        if (walking_vec.x==-1)
+        if (walking_vec.x==-1){
+            player_side=3;
             break;
+        }
 		walking_vec.x-=1;
+        player_side=3;
+        if (!really_walking)
+             glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
+        really_walking=1;
         break;
 
     case 'd':
-        if (walking_vec.x==1)
+        printf("hello333: %d\n", walking_vec.x);
+        if (walking_vec.x==1){
+            player_side=4;
+            printf("hello222\n");
             break;
+        }
 		walking_vec.x+=1;
+        player_side=4;
+        if (!really_walking){
+            printf("hello\n");
+            glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
+        }
+
+        really_walking=1;
         break;
     }
 
@@ -125,7 +154,6 @@ static void on_keyboard_up_walking(unsigned char key, int x,int y){
 		walking_vec.x-=1;
         break;
     }
-
     glutPostRedisplay();
 }
 

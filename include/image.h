@@ -171,7 +171,7 @@ void image_read(Image *image, char *filename) {
      * komponenti).
      */
     	
-    /*for (i=0;i<2;i++){
+    /*for (i=0;i<20;i++){
       fread(&x,sizeof(char),1,file);
       fprintf(izlaz,"1");
     }*/

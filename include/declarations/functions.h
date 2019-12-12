@@ -28,10 +28,13 @@ static void on_timer_text(int value);
 static void on_timer_move_combat(int value);
 static void on_timer_move_walking(int value);
 static void on_timer_invulnerable(int value);
+static void on_timer_animation_move(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
+
+void resize(int x,int y);
 
 void draw_text(char niska[], GLfloat x_val, GLfloat y_val,float r_,float g_,float b_);
 void draw_hearth();

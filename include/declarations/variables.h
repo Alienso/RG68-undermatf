@@ -6,7 +6,7 @@
 #include <GL/glut.h>
 #include <time.h>
 
-extern GLuint names[2];
+GLuint names[10];
 float x_hearth=0;
 float y_hearth=0;
 int absolute_position_x;
@@ -22,6 +22,7 @@ int my_damage = 20;
 int enemy_hp=20;
 int current_texture_w;
 int current_texture_h;
+int player_side=1;
 
 //STRUCT-------------------------------------------------------
 char* wtp;
@@ -47,6 +48,7 @@ int items_in_inv=0;
 int enemy_turn=0;
 int invulnerable=0;
 int walking=0;
+int really_walking=0;
 
 int win_screen=0;
 int escape_screen=0;
