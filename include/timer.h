@@ -3,6 +3,8 @@
 
 #include "header.h"
 
+int pom=0;
+
 static void on_timer_next(int value){
     
     if (value != TIMER_NEXT)
@@ -109,33 +111,20 @@ static void on_timer_invulnerable(int value){
 static void on_timer_animation_move(int value){
 
     if (value!=TIMER_ANIMATION_MOVE)
-    return;
+        return;
 
-    if (walking_vec.x==0 && walking_vec.y==0)
+    if (walking_vec.x==0 && walking_vec.y==0){
         really_walking=0;
+        animation_phase=0;
+    }
         
     if (!really_walking)
         return;
 
-    switch (player_side){
-    case 3:
-        player_side=5;
-        break;
-    case 4:
-        player_side=6;
-        break;
-    case 5:
-        player_side=3;
-        break;
-    case 6:
-        player_side=4;
-        break;
-    
-    default:
-        break;
-    }
+    animation_phase=!animation_phase;
+
     if (walking && (walking_vec.x!=0 || walking_vec.y!=0))
-        glutTimerFunc(500,on_timer_animation_move,TIMER_ANIMATION_MOVE);
+        glutTimerFunc(250,on_timer_animation_move,TIMER_ANIMATION_MOVE);
 
 }
 

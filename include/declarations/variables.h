@@ -49,6 +49,7 @@ int enemy_turn=0;
 int invulnerable=0;
 int walking=0;
 int really_walking=0;
+int animation_phase=0;
 
 int win_screen=0;
 int escape_screen=0;
