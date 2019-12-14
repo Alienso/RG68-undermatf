@@ -5,12 +5,16 @@
 #include "image.h"
 
 #define FILENAME0 "./assets/ulaz.bmp"
-#define FILENAME1 "./assets/player/player_front.bmp"
-#define FILENAME2 "./assets/player/player_back.bmp"
-#define FILENAME3 "./assets/player/player_left.bmp"
-#define FILENAME4 "./assets/player/player_right.bmp"
-#define FILENAME5 "./assets/player/player_left2.bmp"
-#define FILENAME6 "./assets/player/player_right2.bmp"
+#define FILENAME1 "./assets/prvi.bmp"
+
+#define FILENAME10 "./assets/player/player_front.bmp"
+#define FILENAME11 "./assets/player/player_front2.bmp"
+#define FILENAME12 "./assets/player/player_back.bmp"
+#define FILENAME13 "./assets/player/player_back2.bmp"
+#define FILENAME14 "./assets/player/player_left.bmp"
+#define FILENAME15 "./assets/player/player_left2.bmp"
+#define FILENAME16 "./assets/player/player_right.bmp"
+#define FILENAME17 "./assets/player/player_right2.bmp"
 
 void initTextures(void)
 {
@@ -24,10 +28,10 @@ void initTextures(void)
 
     image = image_init(0, 0);
 
-    image_read(image, FILENAME0);
+    glGenTextures(20, names);
 
     //ULAZ
-    glGenTextures(10, names);
+    image_read(image, FILENAME0);
 
     glBindTexture(GL_TEXTURE_2D, names[0]);
     glTexParameteri(GL_TEXTURE_2D,
@@ -42,10 +46,41 @@ void initTextures(void)
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
 
-    //PLAYER_FRONT
+    //PRVI SPRAT
     image_read(image, FILENAME1);
 
     glBindTexture(GL_TEXTURE_2D, names[1]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //PLAYER_FRONT
+    image_read(image, FILENAME10);
+
+    glBindTexture(GL_TEXTURE_2D, names[10]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+                 image->width, image->height, 0,
+                 GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
+
+                 
+    //PLAYER_FRONT_DOWN
+    image_read(image, FILENAME11);
+
+    glBindTexture(GL_TEXTURE_2D, names[11]);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
@@ -58,9 +93,23 @@ void initTextures(void)
 
 
     //PLAYER_BACK
-    image_read(image, FILENAME2);
+    image_read(image, FILENAME12);
 
-    glBindTexture(GL_TEXTURE_2D, names[2]);
+    glBindTexture(GL_TEXTURE_2D, names[12]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+                 image->width, image->height, 0,
+                 GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
+
+    //PLAYER_BACK_DOWN
+    image_read(image, FILENAME13);
+
+    glBindTexture(GL_TEXTURE_2D, names[13]);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
@@ -72,23 +121,9 @@ void initTextures(void)
                  GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 
     //PLAYER_LEFT
-    image_read(image, FILENAME3);
+    image_read(image, FILENAME14);
 
-    glBindTexture(GL_TEXTURE_2D, names[3]);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-                 image->width, image->height, 0,
-                 GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
-
-    //PLAYER_RIGHT
-    image_read(image, FILENAME4);
-
-    glBindTexture(GL_TEXTURE_2D, names[4]);
+    glBindTexture(GL_TEXTURE_2D, names[14]);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
@@ -100,9 +135,23 @@ void initTextures(void)
                  GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 
     //PLAYER_LEFT_DOWN
-    image_read(image, FILENAME5);
+    image_read(image, FILENAME15);
 
-    glBindTexture(GL_TEXTURE_2D, names[5]);
+    glBindTexture(GL_TEXTURE_2D, names[15]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+                 image->width, image->height, 0,
+                 GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
+
+    //PLAYER_RIGHT
+    image_read(image, FILENAME16);
+
+    glBindTexture(GL_TEXTURE_2D, names[16]);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
@@ -114,9 +163,9 @@ void initTextures(void)
                  GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 
     //PLAYER_RIGHT_DOWN
-    image_read(image, FILENAME6);
+    image_read(image, FILENAME17);
 
-    glBindTexture(GL_TEXTURE_2D, names[6]);
+    glBindTexture(GL_TEXTURE_2D, names[17]);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
@@ -126,7 +175,6 @@ void initTextures(void)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
                  image->width, image->height, 0,
                  GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
-
 
     glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -174,6 +222,34 @@ void init_inv(){
 
 }
 
+void init_walking_collisions(){
+
+    current_map=0;
+    for (int i=0;i<4;i++)
+        walking_collision_array[i].size=0;
+
+    add_to_wca(59,66,62,115); //levi deo stepenica
+    add_to_wca(89,96,62,115); //desni deo stepenica
+    add_to_wca(4,6,24,105); //levi zid
+    add_to_wca(123,125,26,105); //desni zid
+    add_to_wca(4,124,26,28); // donji zid
+    add_to_wca(4,124,103,105); //gornji zid
+
+
+
+    return;
+}
+
+void init_events(){
+
+    for (int i=0;i<4;i++)
+        events[i].size=0;
+
+    add_event(66,89,92,94); //switch_to_hall
+    add_event(74,76,53,55); //first talk;
+
+}
+
 void init(){
 
     wtp=(char*)calloc(200,sizeof(char));
@@ -186,15 +262,19 @@ void init(){
     init_Items_Enemies();
     init_inv();
     initTextures();
+    init_walking_collisions();
+    init_events();
     
+    player_side=10;
+    current_map=0;
     weapon_equiped=Olovka;
     curr_enemy=Programer;
 
     int hp=max_hp;
     int my_damage = weapon_equiped->att;
     int enemy_hp=curr_enemy->hp;
-    absolute_position_x=64;
-    absolute_position_y=64;
+    absolute_position_x=75;
+    absolute_position_y=28;
     walking=0;
 
     walking_vec.x=0;

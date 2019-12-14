@@ -21,7 +21,7 @@ static void on_display_walking(void){
     glClear(GL_COLOR_BUFFER_BIT);
 
     //Crta se pozadina
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, names[current_map]);
 
     int miplevel = 0;
     glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &current_texture_w);
@@ -64,9 +64,12 @@ static void on_display_walking(void){
     glDisable(GL_BLEND);
 
     glBindTexture(GL_TEXTURE_2D, 0);
-    sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,player_side);
+
+    if (conversation_happening)
+        draw_conversation();
+    //sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,talk_phase);
     //sprintf(wtp,"%d %d",walking_vec.x,walking_vec.y);
-    draw_text(wtp,-0.8,-0.8,1,1,1);
+    //draw_text(wtp,-0.8,-0.8,1,1,1);
 
     glutPostRedisplay();
     glutSwapBuffers();

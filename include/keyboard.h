@@ -74,7 +74,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'w':
-        player_side=2;
+        (animation_phase==0)?(player_side=12):(player_side=13);
         walking_vec.y=1;
         if (!really_walking)
              glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
@@ -83,7 +83,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
 
     case 's':
 
-        player_side=1;
+        (animation_phase==0)?(player_side=10):(player_side=11);
 		walking_vec.y=-1;
         if (!really_walking)
              glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
@@ -91,7 +91,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'a':
-        (animation_phase==0)?(player_side=3):(player_side=5);
+        (animation_phase==0)?(player_side=14):(player_side=15);
 		walking_vec.x=-1;
         if (!really_walking)
              glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
@@ -99,7 +99,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'd':
-        (animation_phase==0)?(player_side=4):(player_side=6);
+        (animation_phase==0)?(player_side=16):(player_side=17);
 		walking_vec.x=1;
         if (!really_walking){
             glutTimerFunc(1,on_timer_animation_move,TIMER_ANIMATION_MOVE);
@@ -285,5 +285,12 @@ static void on_keyboard_inventory(unsigned char key, int x, int y){
 
 static void on_keyboard_none(unsigned char key, int x, int y){}
 
-static void on_keyboard_talk(unsigned char key, int x, int y){}
+static void on_keyboard_talk(unsigned char key, int x, int y){
+
+    if (key==' ')
+        talk_phase++;
+
+    glutPostRedisplay();
+    return;
+}
 #endif

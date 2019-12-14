@@ -53,6 +53,17 @@ void init();
 void initTextures();
 void init_inv();
 void init_Items_Enemies();
+void init_walking_collisions();
+void init_events();
+
+
+int can_walk();
+int check_quad(int x1,int x2,int y1,int y2);
+int check_events();
+void add_to_wca(int x1,int x2,int y1,int y2);
+void add_event(int x1,int x2,int y1,int y2);
+void remove_event(int i);
+
 
 void remove_from_inv(int item_selected,CVOR** inv);
 void add_to_inv(Item* item,CVOR** inv);
@@ -80,6 +91,11 @@ void bullet_hell_17();
 void bullet_hell_18();
 void bullet_hell_19();
 void bullet_hell_20();
+
+
+void first_talk();
+void switch_to_hall();
+void switch_to_entrance();
 
 
 

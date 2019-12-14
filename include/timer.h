@@ -90,8 +90,15 @@ static void on_timer_move_walking(int value){
         absolute_position_y-=walking_vec.y;
     }
 
+    if(check_events())
+        return;
+    
     absolute_position_x+=walking_vec.x;
     absolute_position_y+=walking_vec.y;
+    if (!can_walk()){
+        absolute_position_x-=walking_vec.x;
+        absolute_position_y-=walking_vec.y;
+    }
     
     if (walking)
         glutTimerFunc(20,on_timer_move_walking,TIMER_MOVE_WALKING);

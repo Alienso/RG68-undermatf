@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "./include/header.h"
+#include "./include/events.h"
 #include "./include/text.h"
 #include "./include/drawing.h"
 #include "./include/bullet_hell.h"
@@ -11,6 +12,8 @@
 #include "./include/Items_Enemies.h"
 #include "./include/image.h"
 #include "./include/inits.h"
+#include "./include/walking_collisions.h"
+
 
 int main(int argc, char **argv){
 

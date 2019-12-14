@@ -51,4 +51,16 @@ typedef struct VECTOR{
     int y;
 }Vector;
 
+typedef struct QUAD_BASE{
+    int x1;
+    int x2;
+    int y1;
+    int y2;
+} Quad_Base;
+
+typedef struct QUAD{
+    Quad_Base quads[1024];
+    int size;
+}Quad;
+
 #endif
