@@ -12,19 +12,21 @@ float y_hearth=0;
 int absolute_position_x;
 int absolute_position_y;
 float t=0;
+float gradient;
 time_t start_time;
 time_t current_time;
 int fps=0;
 int fps_counter=0;
 int random_attack;
 int hp=20;
-int my_damage = 20;
+int my_damage;
 int enemy_hp=20;
 int current_texture_w;
 int current_texture_h;
 int player_side=1;
 int current_map;
 int talk_phase=0;
+int previous_player_side;
 
 //STRUCT-------------------------------------------------------
 char* wtp;
@@ -61,8 +63,5 @@ int escape_screen=0;
 
 void (*att_ptrs[])() = {bullet_hell_1,bullet_hell_2,bullet_hell_3,bullet_hell_4,bullet_hell_5};
 void (*events_ptr[])() = {switch_to_hall,first_talk,switch_to_entrance};
-
-
-
 
 #endif

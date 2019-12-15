@@ -195,14 +195,16 @@ void init_Items_Enemies(){
 
     Spoon= new_Item("Spoon\0","Its a small spoon\0",10,0,0,0);
     Knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,0);
-	Olovka=new_Item("Olovka\0","Tupa je\0",2,0,0,0);
+	Olovka=new_Item("Olovka\0","Tupa je\0",4,0,0,0);
 
+    int dummy_attacks[5]={0,0,0,0,0};
     int programer_attacks[5]={0,1,2,3,4};
     int menadzer_attacks[5]={5,6,7,8,9};
     int operacioni_attacks[5]={10,11,12,13,14};
     int menadzer_kvaliteta_attacks[5]={15,16,17,18,19};
     int boss_attacks[5]={20,21,22,23,24};
 
+    Dummy = new_Enemy("...\0","...\0","...\0",10,0,0,dummy_attacks);
     Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",10,2,0,programer_attacks);
     Menadzer = new_Enemy("Menadzer sa FON-a\0","smth\0","smthh\0",20,5,5,menadzer_attacks);
     OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,7,5,operacioni_attacks);
@@ -235,8 +237,20 @@ void init_walking_collisions(){
     add_to_wca(4,124,26,28); // donji zid
     add_to_wca(4,124,103,105); //gornji zid
 
+    current_map=1;
+    add_to_wca(346+512,420+512,46,48); // donji zid ulaz
+    add_to_wca(418+512,460+512,46,59); //sobica dole
+    add_to_wca(420+512,481+512,71,95); //sobica gore
+    add_to_wca(449+512,451+512,55,73); //desni zid sobica
+    add_to_wca(349+512,351+512,46,96); //levi zid ulaz
+    add_to_wca(477+512,479+512,94,182); //desni zid
+    add_to_wca(239+512,481+512,180,182); //gornji zid
+    add_to_wca(237+512,241+512,124,182); //levi zid hall
+    add_to_wca(0+512,347+512,94,96); //donji zid hodnik
+    add_to_wca(321+512,348+512,136,163);//molekuli
 
 
+    current_map=0;
     return;
 }
 
@@ -245,8 +259,10 @@ void init_events(){
     for (int i=0;i<4;i++)
         events[i].size=0;
 
+    current_map=0;
+
     add_event(66,89,92,94); //switch_to_hall
-    add_event(74,76,53,55); //first talk;
+    //add_event(74,76,53,55); //first talk;
 
 }
 
@@ -270,12 +286,13 @@ void init(){
     weapon_equiped=Olovka;
     curr_enemy=Programer;
 
-    int hp=max_hp;
-    int my_damage = weapon_equiped->att;
-    int enemy_hp=curr_enemy->hp;
+    hp=max_hp;
+    my_damage = weapon_equiped->att;
+    enemy_hp=curr_enemy->hp;
     absolute_position_x=75;
     absolute_position_y=28;
-    walking=0;
+    walking=1;
+    gradient=-1;
 
     walking_vec.x=0;
     walking_vec.y=0;

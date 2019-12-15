@@ -26,8 +26,9 @@ int main(int argc, char **argv){
     glutCreateWindow(argv[0]);
     glutReshapeFunc(resize);
 
-    glutKeyboardFunc(on_keyboard_encounter);
-    glutDisplayFunc(on_display_encounter);
+//    glutKeyboardFunc(on_keyboard_encounter);
+//    glutDisplayFunc(on_display_encounter);
+    switch_to_walking();
 
     glClearColor(0, 0, 0, 0);
 
@@ -49,6 +50,27 @@ void switch_to_combat(){
 
     vec.x=0;
     vec.y=0;
+}
+
+void switch_to_encounter(){
+
+    enemy_hp=curr_enemy->hp;
+    walking=0;
+    really_walking=0;
+    glutKeyboardFunc(on_keyboard_encounter);
+    glutDisplayFunc(on_display_encounter);
+
+    return;
+}
+
+void switch_to_walking(){
+
+    walking=1;
+    glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+    glutKeyboardFunc(on_keyboard_walking);
+    glutKeyboardUpFunc(on_keyboard_up_walking);
+    glutDisplayFunc(on_display_walking);
+    return;
 }
 
 void check_collision(float x,float y){

@@ -74,6 +74,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'w':
+
         (animation_phase==0)?(player_side=12):(player_side=13);
         walking_vec.y=1;
         if (!really_walking)
@@ -91,6 +92,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'a':
+
         (animation_phase==0)?(player_side=14):(player_side=15);
 		walking_vec.x=-1;
         if (!really_walking)
@@ -99,6 +101,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'd':
+
         (animation_phase==0)?(player_side=16):(player_side=17);
 		walking_vec.x=1;
         if (!really_walking){
@@ -121,7 +124,6 @@ static void on_keyboard_up_walking(unsigned char key, int x,int y){
 
     case 'w':
         walking_vec.y=0;
-       	
         break;
 
     case 's':
@@ -242,11 +244,8 @@ static void on_keyboard_to_combat(unsigned char key, int x, int y){
 
 static void on_keyboard_to_walking(unsigned char key, int x, int y){
     if (key==' '){
-        walking=1;
-        glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
-        glutKeyboardFunc(on_keyboard_walking);
-        glutKeyboardUpFunc(on_keyboard_up_walking);
-        glutDisplayFunc(on_display_walking);
+        gradient=-1;
+        glutTimerFunc(1,on_timer_gradient_to_walking,TIMER_GRADIENT_TO_WALKING);
     }
     glutPostRedisplay();
 }

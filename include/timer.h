@@ -135,6 +135,52 @@ static void on_timer_animation_move(int value){
 
 }
 
+static void on_timer_no_choice(int value){
+
+    if (value!=TIMER_NO_CHOICE)
+        return;
+
+    talk_phase++;
+    glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+
+    return;
+}
+
+static void on_timer_gradient_to_encounter(int value){
+
+    if(value!=TIMER_GRADIENT_TO_ENCOUNTER)
+        return;
+
+    gradient+=40.0/1000;
+
+    if (gradient>=0 && gradient<=0.04)
+        switch_to_encounter();
+
+    if (gradient>=1)
+        return;
+    
+    glutPostRedisplay();
+    glutTimerFunc(20,on_timer_gradient_to_encounter,TIMER_GRADIENT_TO_ENCOUNTER);
+    return; 
+}
+
+static void on_timer_gradient_to_walking(int value){
+
+    if(value!=TIMER_GRADIENT_TO_WALKING)
+        return;
+
+    gradient+=40.0/1000;
+
+    if (gradient>=0 && gradient<=0.04)
+        switch_to_walking();
+
+    if (gradient>=1)
+        return;
+    
+    glutPostRedisplay();
+    glutTimerFunc(20,on_timer_gradient_to_walking,TIMER_GRADIENT_TO_WALKING);
+    return; 
+}
 
 
 #endif

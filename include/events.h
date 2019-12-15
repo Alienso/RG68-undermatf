@@ -2,6 +2,7 @@
 #define _EVENTS_
 
 #include "header.h"
+#include "Items_Enemies.h"
 
 void add_event(int x1,int x2,int y1,int y2){
 
@@ -53,8 +54,8 @@ void switch_to_entrance(){
 
 void switch_to_hall(){
     current_map=1;
-    absolute_position_x=400;
-    absolute_position_y=10;
+    absolute_position_x=897;
+    absolute_position_y=55;
     glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
     
 }
@@ -66,17 +67,46 @@ void first_talk(){
     switch(talk_phase){
 
         case 0:
-            strcpy(wtp,"Hello There\0");
+            strcpy(wtp,"Hey!!!\0");
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 1:
-            strcpy(wtp,"Hello\0");
+            strcpy(wtp,"Its risky in there, Havent you heard\0");
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 2:
+            strcpy(wtp,"Fonovci have invaded our Fax\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 3:
+            strcpy(wtp,"I see you are very determined to go in there\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 4:
+            strcpy(wtp,"I would recommend you fight this dummy first\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 5:
+            strcpy(wtp,"Yes       No\0");
+            glutTimerFunc(300,on_timer_no_choice,TIMER_NO_CHOICE);
+            break;
+        case 6:
+            strcpy(wtp,"Great Im glad that you agree!\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 7:
+            curr_enemy=Dummy;
+            talk_phase++;
+            gradient=-1;
+            glutTimerFunc(1,on_timer_gradient_to_encounter,TIMER_GRADIENT_TO_ENCOUNTER);
+            break;
+        case 8:
+            strcpy(wtp,"Nice moves, good luck in there!\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 9:
             end_talk(1);
-
-    }
+        }
 
     return;
 }

@@ -13,6 +13,21 @@ static void on_display_encounter(void){
     if (mercy)
         draw_mercy();
 
+    if (gradient!=-1){
+        glEnable(GL_BLEND);
+        glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+        glColor4f(0,0,0,fabs(fabs(gradient)-1));
+        glBegin(GL_QUADS);
+            glVertex2f(-1, -1);
+            glVertex2f(1, -1);
+            glVertex2f(1, 1);
+            glVertex2f(-1, 1);
+        glEnd();
+
+        glDisable(GL_BLEND);
+    }
+
+    glutPostRedisplay();
     glutSwapBuffers();
 }
 
@@ -61,15 +76,28 @@ static void on_display_walking(void){
         glVertex2f(-0.1, 0.1);
     glEnd();
 
-    glDisable(GL_BLEND);
+    //glDisable(GL_BLEND);
 
     glBindTexture(GL_TEXTURE_2D, 0);
 
+    if (gradient!=-1){
+        //crta se zatamljenje
+        glColor4f(0,0,0,fabs(fabs(gradient)-1));
+        glBegin(GL_QUADS);
+            glVertex2f(-1, -1);
+            glVertex2f(1, -1);
+            glVertex2f(1, 1);
+            glVertex2f(-1, 1);
+        glEnd();
+    }
+    
+    glDisable(GL_BLEND);
+
+    glColor3f(1,1,1);
     if (conversation_happening)
         draw_conversation();
-    //sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,talk_phase);
-    //sprintf(wtp,"%d %d",walking_vec.x,walking_vec.y);
-    //draw_text(wtp,-0.8,-0.8,1,1,1);
+    sprintf(wtp,"%d %d",absolute_position_x,absolute_position_y);
+    draw_text(wtp,-0.8,-0.8,1,1,1);
 
     glutPostRedisplay();
     glutSwapBuffers();
@@ -97,7 +125,7 @@ static void on_display_combat(void){
         start_time=current_time;
     }
     fps_counter++;
-    sprintf(wtp,"%f",t);
+    sprintf(wtp,"%f",gradient);
     draw_text(wtp,0.8,0.8,1,1,1);
 
     (*att_ptrs[curr_enemy->attacks[random_attack]])();
@@ -177,7 +205,8 @@ void draw_base(){
         glColor3f(0,1,0);
         glBegin(GL_LINES);
 	        glVertex2f(-0.6,0.825);
-	        glVertex2f((float)(enemy_hp/20.0)-0.6,0.825);
+            if (enemy_hp>0)
+	            glVertex2f((float)(1.0*enemy_hp/curr_enemy->hp)-0.6,0.825);
 	    glEnd();
 
 
@@ -398,7 +427,7 @@ void draw_conversation(){
     //glutKeyboardFunc(on_keyboard_to_walking);
     //glutTimerFunc(100,on_timer_text,TIMER_TEXT);
 
-    draw_text(wtp,-0.9,-0.7,1,1,1);
+    draw_text(wtp,-0.9,-0.8,1,1,1);
 
 }
 

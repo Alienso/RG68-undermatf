@@ -29,10 +29,14 @@ static void on_timer_move_combat(int value);
 static void on_timer_move_walking(int value);
 static void on_timer_invulnerable(int value);
 static void on_timer_animation_move(int value);
+static void on_timer_no_choice(int value);
+static void on_timer_gradient_to_walking(int value);
+static void on_timer_gradient_to_encounter(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
+static void on_display_black_screen(void);
 
 void resize(int x,int y);
 
@@ -48,6 +52,8 @@ void draw_conversation();
 
 void check_collision(float x,float y);
 void switch_to_combat();
+void switch_to_encounter();
+void switch_to_walking();
 void highlight_current();
 void init();
 void initTextures();

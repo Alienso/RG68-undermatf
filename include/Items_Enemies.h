@@ -17,6 +17,7 @@ Item* Spoon;
 Item* Knjiga;
 Item* Olovka;
 
+Enemy* Dummy;
 Enemy* Programer;
 Enemy* Menadzer;
 Enemy* OperacioniMenadzer;
@@ -32,7 +33,7 @@ Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def,int
         exit(1);
     }
 
-    void (*att_ptr)(void)=&bullet_hell_11;
+    new_Enemy->hp=hp;
     new_Enemy->att=att;
     new_Enemy->def=def;
     strcpy(new_Enemy->name,name);
