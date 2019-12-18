@@ -3,6 +3,7 @@
 
 #include "header.h"
 #include "image.h"
+#include "Items_Enemies.h"
 
 #define FILENAME0 "./assets/ulaz.bmp"
 #define FILENAME1 "./assets/prvi.bmp"
