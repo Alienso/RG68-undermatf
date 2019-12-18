@@ -27,6 +27,10 @@ int player_side=1;
 int current_map;
 int talk_phase=0;
 int previous_player_side;
+int last_key_pressed;
+int shop_item_selected=0;
+int items_in_shop=0;
+int gold=100;
 
 //STRUCT-------------------------------------------------------
 char* wtp;
@@ -36,7 +40,7 @@ Item* weapon_equiped;
 Vector vec;
 Vector walking_vec;
 Quad walking_collision_array[4];
-Quad events[4];
+Event events[4];
 
 
 //FLAGS---------------------------------------------------------
@@ -57,11 +61,14 @@ int walking=0;
 int really_walking=0;
 int animation_phase=0;
 int conversation_happening;
+int encounter_start_animation=0;
+int exclamation_mark=0;
 
 int win_screen=0;
 int escape_screen=0;
 
 void (*att_ptrs[])() = {bullet_hell_1,bullet_hell_2,bullet_hell_3,bullet_hell_4,bullet_hell_5};
-void (*events_ptr[])() = {switch_to_hall,first_talk,switch_to_entrance};
+void (*events_ptr[])() = {first_talk,switch_to_hall,switch_to_entrance,open_chemist_shop};
+Item* Chemist_items[4];
 
 #endif

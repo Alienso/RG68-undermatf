@@ -93,11 +93,18 @@ static void on_display_walking(void){
     
     glDisable(GL_BLEND);
 
+
+    if (exclamation_mark)
+        draw_exclamation_mark();
+
     glColor3f(1,1,1);
     if (conversation_happening)
         draw_conversation();
-    sprintf(wtp,"%d %d",absolute_position_x,absolute_position_y);
-    draw_text(wtp,-0.8,-0.8,1,1,1);
+    //sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,exclamation_mark);
+    //draw_text(wtp,-0.8,-0.8,1,1,1);
+
+    if (encounter_start_animation)
+        draw_hearth();
 
     glutPostRedisplay();
     glutSwapBuffers();
@@ -132,6 +139,69 @@ static void on_display_combat(void){
     
     glutPostRedisplay();
     glutSwapBuffers();
+}
+
+static void on_display_chemist(void){
+
+ glClear(GL_COLOR_BUFFER_BIT);
+
+ glColor3f(0,0,0);
+    glBegin(GL_POLYGON);
+        glVertex2f(-1,-1);
+        glVertex2f(1,-1);
+        glVertex2f(1, -0.6);
+        glVertex2f(-1, -0.6);
+    glEnd();
+
+    glLineWidth(10);
+    glColor3f(1,1,1);
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(-1,-1);
+        glVertex2f(1,-1);
+        glVertex2f(1, -0.6);
+        glVertex2f(-1, -0.6);
+    glEnd();
+
+    glLineWidth(2);
+    glColor3f(0,0,0);
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(-0.993,-0.993);
+        glVertex2f(0.993,-0.993);
+        glVertex2f(0.993, -0.6);
+        glVertex2f(-0.993, -0.6);
+    glEnd();
+
+
+    //crta se HUD
+    char goldstr[8];
+    sprintf(goldstr,"%d",gold);
+    strcpy(wtp,"Gold:\0");
+    draw_text(wtp,-0.9,-0.5,1,1,1);
+    strcpy(wtp,goldstr);
+    draw_text(wtp,-0.7,-0.5,1,1,1);
+
+    strcpy(wtp,"Price: \0");
+    draw_text(wtp,0.6,-0.5,1,1,1);
+    sprintf(goldstr,"%d",Chemist_items[shop_item_selected]->price);
+    draw_text(goldstr,0.8,-0.5,1,1,1);
+
+    strcpy(wtp,Chemist_items[shop_item_selected]->description);
+    draw_text(wtp,-0.1,-0.5,1,1,1);
+
+    //Crtaju se itemi
+    for (int i=0;i<items_in_shop;i++){
+        strcpy(wtp,Chemist_items[i]->name);
+        draw_text("* \0",-0.9+i*0.58-i/2,-0.7-i/2*0.1,1,1,1);
+        draw_text(wtp,-0.85+i*0.58-i/2,-0.7-i/2*0.1,1,1,1);
+            if (i==shop_item_selected){
+                draw_text("* \0",-0.9+i*0.58-i/2,-0.7-i/2*0.1,1,0.5,0);
+                draw_text(wtp,-0.85+i*0.58-i/2,-0.7-i/2*0.1,1,0.5,0);
+            }
+    }
+
+    glutPostRedisplay();
+    glutSwapBuffers();
+
 }
 
 void draw_base(){
@@ -559,5 +629,23 @@ void draw_inventory(){
 
 }
 
+void draw_exclamation_mark(){
+
+    glColor3f(1,1,0);
+        
+    glLineWidth(10);
+    glBegin(GL_LINES);
+        glVertex2f(0,0.2);
+        glVertex2f(0,0.275);
+    glEnd();
+
+    glPointSize(10);
+    glBegin(GL_POINTS);
+        glVertex2f(0,0.15);
+    glEnd();
+
+
+    return;
+}
 
 #endif

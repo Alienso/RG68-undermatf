@@ -124,7 +124,7 @@ void oslobodi_listu(CVOR** p_pocetak_liste){
 	return NULL;
 }*/
 
-Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable){
+Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable,int price){
 
     Item* new_Item;
     new_Item=(Item*) calloc(1,sizeof(Item));
@@ -137,6 +137,7 @@ Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable){
     new_Item->def=def;
     new_Item->hp=hp;
     new_Item->consumable=consumable;
+	new_Item->price=price;
     strcpy(new_Item->name,name);
     strcpy(new_Item->description,desc);
 

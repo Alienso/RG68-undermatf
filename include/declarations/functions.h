@@ -10,8 +10,9 @@ static void on_keyboard_combat(unsigned char key, int x, int y);
 static void on_keyboard_talk(unsigned char key, int x, int y);
 static void on_keyboard_mercy(unsigned char key, int x, int y);
 static void on_keyboard_none(unsigned char key, int x, int y);
-
+static void on_keyboard_chemist(unsigned char key, int x, int y);
 static void on_keyboard_inventory(unsigned char key, int x, int y);
+
 static void on_keyboard_to_encouter(unsigned char key, int x, int y);
 static void on_keyboard_to_combat(unsigned char key, int x, int y);
 static void on_keyboard_to_walking(unsigned char key, int x, int y);
@@ -37,6 +38,7 @@ static void on_display_encounter(void);
 static void on_display_combat(void);
 static void on_display_walking(void);
 static void on_display_black_screen(void);
+static void on_display_chemist(void);
 
 void resize(int x,int y);
 
@@ -49,6 +51,7 @@ void draw_win();
 void draw_escape();
 void draw_mercy();
 void draw_conversation();
+void draw_exclamation_mark();
 
 void check_collision(float x,float y);
 void switch_to_combat();
@@ -67,14 +70,15 @@ int can_walk();
 int check_quad(int x1,int x2,int y1,int y2);
 int check_events();
 void add_to_wca(int x1,int x2,int y1,int y2);
-void add_event(int x1,int x2,int y1,int y2);
+void add_event(int x1,int x2,int y1,int y2,int i);
+void add_key_event(int x1,int x2,int y1,int y2,int i);
 void remove_event(int i);
 
 
 void remove_from_inv(int item_selected,CVOR** inv);
 void add_to_inv(Item* item,CVOR** inv);
 
-Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable);
+Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable,int price);
 Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def,int attacks[5]);
 
 void bullet_hell_1();
@@ -102,6 +106,7 @@ void bullet_hell_20();
 void first_talk();
 void switch_to_hall();
 void switch_to_entrance();
+void open_chemist_shop();
 
 
 

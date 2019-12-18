@@ -183,19 +183,19 @@ void initTextures(void)
 
 void init_Items_Enemies(){
 
-    Pizza = new_Item("Pizza\0","Capricciosa\0",0,0,10,1);
-    RolVirsla= new_Item("RolVirsla\0","...\0",0,0,10,1);
-    Kafa= new_Item("Kafa\0","Nescafe\0",1,0,5,1);
-    CheezeCake= new_Item("CheezeCake\0","...\0",0,2,20,1);
+    Pizza = new_Item("Pizza\0","Capricciosa\0",0,0,10,1,100);
+    RolVirsla= new_Item("RolVirsla\0","...\0",0,0,10,1,80);
+    Kafa= new_Item("Kafa\0","Nescafe\0",1,0,5,1,50);
+    CheezeCake= new_Item("CheezeCake\0","...\0",0,2,20,1,250);
 
-    H2SO4= new_Item("H2SO4\0","Smells Bad\0",10,0,0,1);
-    InvisibilityPotion= new_Item("Invisibilty Potion\0","Smells Delicious\0",0,0,0,1);
-    //MysteriousPotion= new_Item();
-    HPPotion= new_Item("HP Potion\0","Restores Health\0",0,0,10,1);
+    H2SO4= new_Item("H2SO4\0","Smells Bad\0",10,0,0,1,50);
+    InvisibilityPotion= new_Item("Invisibilty Potion\0","Smells Delicious\0",0,0,0,1,50);
+    MysteriousPotion= new_Item("Mysterious Potion\0","Glows!\0",0,0,0,1,1000);
+    HPPotion= new_Item("HP Potion\0","Restores Health\0",0,0,10,1,20);
 
-    Spoon= new_Item("Spoon\0","Its a small spoon\0",10,0,0,0);
-    Knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,0);
-	Olovka=new_Item("Olovka\0","Tupa je\0",4,0,0,0);
+    Spoon= new_Item("Spoon\0","Its a small spoon\0",10,0,0,0,0);
+    Knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,0,0);
+	Olovka=new_Item("Olovka\0","Tupa je\0",20,0,0,0,0);
 
     int dummy_attacks[5]={0,0,0,0,0};
     int programer_attacks[5]={0,1,2,3,4};
@@ -211,6 +211,10 @@ void init_Items_Enemies(){
     MenadzerKvaliteta = new_Enemy("Menadzer Kvaliteta\0","dsad\0","dasew\0",30,4,8,menadzer_kvaliteta_attacks);
     Boss = new_Enemy("Final Boss\0","sdas\0","ewqe\0",50,10,5,boss_attacks);
 
+    Chemist_items[0]=H2SO4;
+    Chemist_items[1]=HPPotion;
+    Chemist_items[2]=MysteriousPotion;
+    Chemist_items[3]=InvisibilityPotion;
 }
 
 void init_inv(){
@@ -245,10 +249,21 @@ void init_walking_collisions(){
     add_to_wca(349+512,351+512,46,96); //levi zid ulaz
     add_to_wca(477+512,479+512,94,182); //desni zid
     add_to_wca(239+512,481+512,180,182); //gornji zid
-    add_to_wca(237+512,241+512,124,182); //levi zid hall
-    add_to_wca(0+512,347+512,94,96); //donji zid hodnik
+    add_to_wca(232+512,241+512,124,207); //levi zid hall
     add_to_wca(321+512,348+512,136,163);//molekuli
-
+    add_to_wca(731,737,124,207); //levi zid uske prostorije
+    add_to_wca(731,750,201,203); //gornji zid uske prostorije
+    add_to_wca(495,708,122,153); //gornji zid hodnik
+    add_to_wca(200,465,122,153); //gornji zid hodnik nastavak
+    add_to_wca(495,348+512,94,97); //donji zid hodnik
+    add_to_wca(410,481,66,95); //donji zid hodnik nastavak
+    add_to_wca(706,735,150,152); //stepenice uske
+    add_to_wca(461,500,149,151); //studentska sluzba vrata gore
+    add_to_wca(500,502,32,90); //wc desni zid
+    add_to_wca(380,504,35,37); //wc donji zid
+    add_to_wca(494,502,68,72); //ws pregrada
+    add_to_wca(441,450,34,70); //wc podela vertikalna
+    add_to_wca(417,475,49,57); //wc podela horizontalna
 
     current_map=0;
     return;
@@ -261,8 +276,15 @@ void init_events(){
 
     current_map=0;
 
-    add_event(66,89,92,94); //switch_to_hall
-    //add_event(74,76,53,55); //first talk;
+    //add_event(74,76,53,55,0); //first talk;
+    add_event(66,89,92,94,1); //entrance->hall
+    
+    current_map=1;
+    add_event(888,900,48,50,2); //hall->entrance
+    add_key_event(590,605,119,125,3); //chemist
+
+
+    current_map=0;
 
 }
 
@@ -285,6 +307,7 @@ void init(){
     current_map=0;
     weapon_equiped=Olovka;
     curr_enemy=Programer;
+    encounter_start_animation=0;
 
     hp=max_hp;
     my_damage = weapon_equiped->att;

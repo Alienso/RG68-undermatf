@@ -57,6 +57,7 @@ void switch_to_encounter(){
     enemy_hp=curr_enemy->hp;
     walking=0;
     really_walking=0;
+    encounter_start_animation=0;
     glutKeyboardFunc(on_keyboard_encounter);
     glutDisplayFunc(on_display_encounter);
 

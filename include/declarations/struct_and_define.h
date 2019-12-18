@@ -28,6 +28,7 @@ typedef struct ITEM{
     int def;
     int hp;
     int consumable;
+    int price;
 }Item;
 
 typedef struct INVENTORY{
@@ -65,5 +66,12 @@ typedef struct QUAD{
     Quad_Base quads[1024];
     int size;
 }Quad;
+
+typedef struct EVENT{
+    Quad_Base quads[1024];
+    int no[1024];
+    int key[1024];
+    int size;
+}Event;
 
 #endif

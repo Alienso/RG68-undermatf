@@ -6,9 +6,6 @@
 static void on_keyboard_combat(unsigned char key, int x, int y){
 	
     switch (key) {
-    case 27:
-        exit(0);
-        break;
 
     case 'w':
         if (vec.y==1)
@@ -41,9 +38,6 @@ static void on_keyboard_combat(unsigned char key, int x, int y){
 static void on_keyboard_up_combat(unsigned char key, int x,int y){
 
     switch (key) {
-    case 27:
-        exit(0);
-        break;
 
     case 'w':
         vec.y-=1;
@@ -69,12 +63,9 @@ static void on_keyboard_up_combat(unsigned char key, int x,int y){
 static void on_keyboard_walking(unsigned char key, int x, int y){
 
     switch (key) {
-    case 27:
-        exit(0);
-        break;
 
     case 'w':
-
+        last_key_pressed='w';
         (animation_phase==0)?(player_side=12):(player_side=13);
         walking_vec.y=1;
         if (!really_walking)
@@ -83,7 +74,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 's':
-
+        last_key_pressed='s';
         (animation_phase==0)?(player_side=10):(player_side=11);
 		walking_vec.y=-1;
         if (!really_walking)
@@ -92,7 +83,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'a':
-
+        last_key_pressed='a';
         (animation_phase==0)?(player_side=14):(player_side=15);
 		walking_vec.x=-1;
         if (!really_walking)
@@ -101,7 +92,7 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         break;
 
     case 'd':
-
+        last_key_pressed='d';
         (animation_phase==0)?(player_side=16):(player_side=17);
 		walking_vec.x=1;
         if (!really_walking){
@@ -109,6 +100,9 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
         }
 
         really_walking=1;
+        break;
+    case ' ':
+        last_key_pressed=' ';
         break;
     }
 
@@ -118,9 +112,6 @@ static void on_keyboard_walking(unsigned char key, int x, int y){
 static void on_keyboard_up_walking(unsigned char key, int x,int y){
 
     switch (key) {
-    case 27:
-        exit(0);
-        break;
 
     case 'w':
         walking_vec.y=0;
@@ -282,8 +273,6 @@ static void on_keyboard_inventory(unsigned char key, int x, int y){
     glutPostRedisplay();
 }
 
-static void on_keyboard_none(unsigned char key, int x, int y){}
-
 static void on_keyboard_talk(unsigned char key, int x, int y){
 
     if (key==' ')
@@ -292,4 +281,39 @@ static void on_keyboard_talk(unsigned char key, int x, int y){
     glutPostRedisplay();
     return;
 }
+
+static void on_keyboard_chemist(unsigned char key, int x, int y){
+
+    switch (key){
+
+        case ' ':
+            if (gold>=Chemist_items[shop_item_selected]->price){
+                gold-=Chemist_items[shop_item_selected]->price;
+                add_to_inv(Chemist_items[shop_item_selected],&inv);
+            }
+            break;
+
+        case 'a':
+            if (shop_item_selected==0){
+                shop_item_selected=items_in_shop-1;
+                break;
+            }
+            shop_item_selected-=1;
+            break;
+        
+        case 'd':
+            shop_item_selected+=1;
+            shop_item_selected=shop_item_selected%items_in_shop;
+            break;
+            
+        case 27:
+            last_key_pressed=' ';
+            conversation_happening=1;
+            switch_to_walking();
+            break;
+    }
+    glutPostRedisplay();
+}
+
+static void on_keyboard_none(unsigned char key, int x, int y){}
 #endif
