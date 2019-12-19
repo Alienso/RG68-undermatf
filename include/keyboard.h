@@ -315,5 +315,14 @@ static void on_keyboard_chemist(unsigned char key, int x, int y){
     glutPostRedisplay();
 }
 
+static void on_keyboard_menu(unsigned char key, int x, int y){
+    switch (key){
+         case ' ':
+            glutTimerFunc(1,on_timer_gradient_to_walking,TIMER_GRADIENT_TO_WALKING);
+            break;
+    }
+    return;
+}
+
 static void on_keyboard_none(unsigned char key, int x, int y){}
 #endif

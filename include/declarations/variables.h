@@ -68,7 +68,7 @@ int win_screen=0;
 int escape_screen=0;
 
 void (*att_ptrs[])() = {bullet_hell_1,bullet_hell_2,bullet_hell_3,bullet_hell_4,bullet_hell_5};
-void (*events_ptr[])() = {first_talk,switch_to_hall,switch_to_entrance,open_chemist_shop};
+void (*events_ptr[])() = {first_talk,switch_to_hall,switch_to_entrance,open_chemist_shop,tutorial_guy_talk};
 Item* Chemist_items[4];
 
 #endif

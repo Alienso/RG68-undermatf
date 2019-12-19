@@ -132,9 +132,29 @@ void first_talk(){
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 9:
+            add_key_event(60,73,52,58,4);
             end_talk(0);
         }
 
+    return;
+}
+
+void tutorial_guy_talk(){   
+    glutKeyboardFunc(on_keyboard_talk);
+    conversation_happening=1;
+    switch(talk_phase){
+        case 0:
+            strcpy(wtp,"Go on, nothing to see here\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 1:
+            conversation_happening=0;
+            talk_phase=0;
+            last_key_pressed=0;
+            glutKeyboardFunc(on_keyboard_walking);
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+    }
     return;
 }
 

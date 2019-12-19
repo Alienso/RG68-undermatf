@@ -26,9 +26,9 @@ int main(int argc, char **argv){
     glutCreateWindow(argv[0]);
     glutReshapeFunc(resize);
 
-//    glutKeyboardFunc(on_keyboard_encounter);
-//    glutDisplayFunc(on_display_encounter);
-    switch_to_walking();
+    glutKeyboardFunc(on_keyboard_menu);
+    glutDisplayFunc(on_display_menu);
+//    switch_to_walking();
 
     glClearColor(0, 0, 0, 0);
 

@@ -2,6 +2,7 @@
 #define _TIMERS_
 
 #include "header.h"
+#include "Items_Enemies.h"
 
 int pom=0;
 
@@ -130,7 +131,7 @@ static void on_timer_animation_move(int value){
 
     animation_phase=!animation_phase;
 
-    int x=rand()%100000;
+    /*int x=rand()%100000;
     if (x/1000.0<=0.6){
         gradient=-1;
         curr_enemy=Programer;
@@ -140,7 +141,7 @@ static void on_timer_animation_move(int value){
         encounter_start_animation=1;
         glutTimerFunc(1,on_timer_gradient_to_encounter,TIMER_GRADIENT_TO_ENCOUNTER);
         return;
-    }
+    }*/
 
     if (walking && (walking_vec.x!=0 || walking_vec.y!=0))
         glutTimerFunc(250,on_timer_animation_move,TIMER_ANIMATION_MOVE);

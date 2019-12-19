@@ -17,6 +17,9 @@
 #define FILENAME16 "./assets/player/player_right.bmp"
 #define FILENAME17 "./assets/player/player_right2.bmp"
 
+#define FILENAME18 "./assets/chemist.bmp"
+#define FILENAME19 "./assets/menu.bmp"
+
 void initTextures(void)
 {
     Image * image;
@@ -177,7 +180,41 @@ void initTextures(void)
                  image->width, image->height, 0,
                  GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 
+
+    //CHEMIST
+    image_read(image, FILENAME18);
+
+    glBindTexture(GL_TEXTURE_2D, names[18]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //MENU
+    image_read(image, FILENAME19);
+
+    glBindTexture(GL_TEXTURE_2D, names[19]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
     glBindTexture(GL_TEXTURE_2D, 0);
+
 
     image_done(image);
 }
@@ -235,6 +272,7 @@ void init_walking_collisions(){
     for (int i=0;i<4;i++)
         walking_collision_array[i].size=0;
 
+    add_to_wca(62,73,57,80);//Covek
     add_to_wca(59,66,62,115); //levi deo stepenica
     add_to_wca(89,96,62,115); //desni deo stepenica
     add_to_wca(4,6,24,105); //levi zid
@@ -277,7 +315,7 @@ void init_events(){
 
     current_map=0;
 
-    //add_event(74,76,53,55,0); //first talk;
+    add_event(70,78,53,55,0); //first talk;
     add_event(66,89,92,94,1); //entrance->hall
     
     current_map=1;

@@ -100,8 +100,8 @@ static void on_display_walking(void){
     glColor3f(1,1,1);
     if (conversation_happening)
         draw_conversation();
-    //sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,exclamation_mark);
-    //draw_text(wtp,-0.8,-0.8,1,1,1);
+    sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,exclamation_mark);
+    draw_text(wtp,-0.8,-0.8,1,1,1);
 
     if (encounter_start_animation)
         draw_hearth();
@@ -171,6 +171,23 @@ static void on_display_chemist(void){
         glVertex2f(-0.993, -0.6);
     glEnd();
 
+    glBindTexture(GL_TEXTURE_2D, names[18]);
+    glBegin(GL_QUADS);
+
+        glTexCoord2f(0,0);
+        glVertex2f(-0.5, -0.3);
+
+        glTexCoord2f(1,0);
+        glVertex2f(0.5, -0.3);
+
+        glTexCoord2f(1,1);
+        glVertex2f(0.5, 0.7);
+
+        glTexCoord2f(0,1);
+        glVertex2f(-0.5, 0.7);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+
 
     //crta se HUD
     char goldstr[8];
@@ -202,6 +219,36 @@ static void on_display_chemist(void){
     glutPostRedisplay();
     glutSwapBuffers();
 
+}
+
+static void on_display_menu(void){
+
+
+     glBindTexture(GL_TEXTURE_2D, names[19]);
+     glBegin(GL_QUADS);
+
+        glTexCoord2f(0,0);
+        glVertex2f(-1, -1);
+
+        glTexCoord2f(1,0);
+        glVertex2f(1, -1);
+
+        glTexCoord2f(1,1);
+        glVertex2f(1, 1);
+
+        glTexCoord2f(0,1);
+        glVertex2f(-1, 1);
+    glEnd();
+     glBindTexture(GL_TEXTURE_2D, 0);
+
+    glColor3f(1,1,1);
+    strcpy(wtp,"START\0");
+    draw_text(wtp,-0.1,-0.1,1,1,1);
+
+
+
+    glutPostRedisplay();
+    glutSwapBuffers();
 }
 
 void draw_base(){

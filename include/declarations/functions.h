@@ -12,6 +12,7 @@ static void on_keyboard_mercy(unsigned char key, int x, int y);
 static void on_keyboard_none(unsigned char key, int x, int y);
 static void on_keyboard_chemist(unsigned char key, int x, int y);
 static void on_keyboard_inventory(unsigned char key, int x, int y);
+static void on_keyboard_menu(unsigned char key, int x, int y);
 
 static void on_keyboard_to_encouter(unsigned char key, int x, int y);
 static void on_keyboard_to_combat(unsigned char key, int x, int y);
@@ -39,6 +40,7 @@ static void on_display_combat(void);
 static void on_display_walking(void);
 static void on_display_black_screen(void);
 static void on_display_chemist(void);
+static void on_display_menu(void);
 
 void resize(int x,int y);
 
@@ -107,6 +109,7 @@ void first_talk();
 void switch_to_hall();
 void switch_to_entrance();
 void open_chemist_shop();
+void tutorial_guy_talk();
 
 
 
