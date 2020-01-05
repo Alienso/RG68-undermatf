@@ -2,5 +2,5 @@
 UnderMatf
 
 Komande:
-|WASD|Kretanje|
-|space|Interakcija|
+| WASD  |  Kretane |
+| space | Interakcija |
