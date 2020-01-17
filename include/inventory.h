@@ -54,6 +54,7 @@ void remove_from_inv(int q, CVOR** p_pocetak_liste){
 		if (pomocni_cvor==NULL)
 			return;
 		(*p_pocetak_liste)=(*p_pocetak_liste)->sledeci;
+		use_item(pomocni_cvor);
 		free(pomocni_cvor);
 
 		items_in_inv--;
@@ -64,6 +65,7 @@ void remove_from_inv(int q, CVOR** p_pocetak_liste){
 	while(*p_pocetak_liste!=NULL && i!=q-1){
 		CVOR* pomocni_cvor=*p_pocetak_liste;
 		*p_pocetak_liste=(*p_pocetak_liste)->sledeci;
+		use_item(pomocni_cvor);
 		free(pomocni_cvor);
 		i++;
 	}
@@ -83,6 +85,7 @@ void remove_from_inv(int q, CVOR** p_pocetak_liste){
 	if (pomocni_cvor==NULL)
 		return;
 	(*p_pocetak_liste)->sledeci=(*p_pocetak_liste)->sledeci->sledeci;
+	use_item(pomocni_cvor);
 	free(pomocni_cvor);
 
 	items_in_inv--;
@@ -144,4 +147,16 @@ Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable,int p
     return new_Item;
 }
 
+void use_item(CVOR* item){
+
+	hp+=item->Items->hp;
+	enemy_hp-=item->Items->att;
+
+	if (hp>max_hp)
+	hp=max_hp;
+
+	if (enemy_hp<0)
+		enemy_hp=0;
+	return;
+}
 #endif

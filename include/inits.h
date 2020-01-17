@@ -315,7 +315,7 @@ void init_Items_Enemies(){
     Kafa= new_Item("Kafa\0","Nescafe\0",1,0,5,1,50);
     CheezeCake= new_Item("CheezeCake\0","...\0",0,2,20,1,250);
 
-    H2SO4= new_Item("H2SO4\0","Smells Bad\0",10,0,0,1,50);
+    H2SO4= new_Item("H2SO4\0","Smells Bad\0",15,0,0,1,50);
     InvisibilityPotion= new_Item("Invisibilty Potion\0","Smells Delicious\0",0,0,0,1,50);
     MysteriousPotion= new_Item("Mysterious Potion\0","Glows!\0",0,0,0,1,1000);
     HPPotion= new_Item("HP Potion\0","Restores Health\0",0,0,10,1,20);

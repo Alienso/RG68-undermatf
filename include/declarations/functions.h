@@ -84,6 +84,7 @@ void remove_event(int i);
 
 void remove_from_inv(int item_selected,CVOR** inv);
 void add_to_inv(Item* item,CVOR** inv);
+void use_item(CVOR* item);
 
 Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable,int price);
 Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def,int attacks[5]);

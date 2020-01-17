@@ -310,6 +310,7 @@ static void on_keyboard_chemist(unsigned char key, int x, int y){
             if (gold>=Chemist_items[shop_item_selected]->price){
                 gold-=Chemist_items[shop_item_selected]->price;
                 add_to_inv(Chemist_items[shop_item_selected],&inv);
+                items_in_inv++;
             }
             break;
 
