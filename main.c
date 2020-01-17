@@ -28,7 +28,6 @@ int main(int argc, char **argv){
 
     glutKeyboardFunc(on_keyboard_menu);
     glutDisplayFunc(on_display_menu);
-//    switch_to_walking();
 
     glClearColor(0, 0, 0, 0);
 
@@ -41,10 +40,25 @@ int main(int argc, char **argv){
 void switch_to_combat(){
     enemy_turn=1;
     glutDisplayFunc(on_display_combat);
+
+    if (curr_enemy==Boss){
+        mini_game_speed++;
+        mini_game_counter=40;
+        clear_boss_field();
+        glutKeyboardFunc(on_keyboard_boss);
+        glutTimerFunc(10000,on_timer_combat,TIMER_COMBAT);
+        glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
+        glutKeyboardUpFunc(on_keyboard_none);
+        glutTimerFunc(1,on_timer_mini_game,TIMER_MINI_GAME);
+        x_hearth=0;
+        y_hearth=-0.2;
+    }
+    else {
     glutKeyboardFunc(on_keyboard_combat);
     glutTimerFunc(5000,on_timer_combat,TIMER_COMBAT);
     glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
     glutKeyboardUpFunc(on_keyboard_up_combat);
+    }
 
     start_time=time(NULL);
 
@@ -67,6 +81,7 @@ void switch_to_encounter(){
 void switch_to_walking(){
 
     walking=1;
+    last_key_pressed=0;
     glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
     glutKeyboardFunc(on_keyboard_walking);
     glutKeyboardUpFunc(on_keyboard_up_walking);
@@ -74,7 +89,7 @@ void switch_to_walking(){
     return;
 }
 
-void check_collision(float x,float y){
+void check_collision(float x,float y){ //collision while walking
 
     if (!invulnerable && (x_hearth>x-0.02 && x_hearth<x+0.02) && (y_hearth>y-0.02 && y_hearth<y+0.02)){
         hp-=5;
@@ -86,4 +101,18 @@ void check_collision(float x,float y){
 
 void resize(int width, int height) {
     glutReshapeWindow( 700, 700);
+}
+
+void clear_boss_field(){ //clear matrix
+    int i;
+    for (i=0;i<50;i++)
+        boss_field[i][50]=0;
+    for (i=99;i>50;i--)
+        boss_field[i][50]=0;
+    for (i=0;i<50;i++)
+        boss_field[50][i]=0;
+    for (i=99;i>50;i--)
+        boss_field[50][i]=0;
+
+    return;
 }

@@ -24,12 +24,12 @@ static void on_timer_combat(int value){
     vec.x=0;
     vec.y=0;
     x_hearth=0;
-    y_hearth=0;
+    y_hearth=-0.2;
     glutDisplayFunc(on_display_encounter);
     glutKeyboardFunc(on_keyboard_encounter);
 }
 
-static void on_timer_move_combat(int value){
+static void on_timer_move_combat(int value){ //allows movement
 
     if (value != TIMER_MOVE_COMBAT){
         return;
@@ -65,7 +65,7 @@ static void on_timer_move_combat(int value){
     return;
 }
 
-static void on_timer_move_walking(int value){
+static void on_timer_move_walking(int value){ //allows movement
 
     if (value != TIMER_MOVE_WALKING){
         return;
@@ -193,6 +193,92 @@ static void on_timer_gradient_to_walking(int value){
     glutPostRedisplay();
     glutTimerFunc(20,on_timer_gradient_to_walking,TIMER_GRADIENT_TO_WALKING);
     return; 
+}
+
+static void on_timer_mini_game(int value){ //boss fight attacks logic
+
+    if(value!=TIMER_MINI_GAME)
+        return;
+
+    int i,j;
+    if (mini_game_counter>=40){
+        mini_game_counter=0;
+        if (mini_game_speed>=7)
+            mini_game_speed=7;
+        switch (rand()%4){
+        case 0:
+            boss_field[50][0]=1;
+            break;
+        case 1:
+            boss_field[50][99]=1;
+            break;
+        case 2:
+            boss_field[0][50]=1;
+            break;
+        case 3:
+            boss_field[99][50]=1;
+            break;
+        }
+    }
+
+    for (i=0;i<50;i++){ //levo
+        if (boss_field[i][50]==1 && i==43){
+            if (shield_side!=2)
+                hp-=curr_enemy->att;
+            boss_field[43][50]=0;
+        }
+        if (boss_field[i][50]==1){
+            boss_field[i][50]=0;
+            boss_field[i+1][50]=1;
+            i++;
+        }
+    }
+
+    for (i=99;i>50;i--){ //desno
+        if (boss_field[i][50]==1 && i==57){
+            if (shield_side!=3)
+                hp-=curr_enemy->att;
+            boss_field[57][50]=0;
+        }
+        if (boss_field[i][50]==1){
+            boss_field[i][50]=0;
+            boss_field[i-1][50]=1;
+            i--;
+        }
+    }
+
+    for (i=0;i<50;i++){ //gore
+        if (boss_field[50][i]==1 && i==45){
+            if (shield_side!=1)
+                hp-=curr_enemy->att;
+            boss_field[50][45]=0;
+        }
+        if (boss_field[50][i]==1){
+            boss_field[50][i]=0;
+            boss_field[50][i+1]=1;
+            i++;
+        }
+    }
+
+    for (i=99;i>50;i--){ //dole
+        if (boss_field[50][i]==1 && i==58){
+            if (shield_side!=0)
+                hp-=curr_enemy->att;
+            boss_field[50][58]=0;
+        }
+        if (boss_field[50][i]==1){
+            boss_field[50][i]=0;
+            boss_field[50][i-1]=1;
+            i--;
+        }
+    }
+
+    mini_game_counter++;
+
+    if (enemy_turn)
+        glutTimerFunc(20-mini_game_speed,on_timer_mini_game,TIMER_MINI_GAME);
+
+
 }
 
 

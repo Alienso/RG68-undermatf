@@ -20,7 +20,7 @@ int check_quad(int x1,int x2,int y1,int y2){
     return 0;
 }
 
-void add_to_wca(int x1,int x2,int y1,int y2){
+void add_to_wca(int x1,int x2,int y1,int y2){ //adds colision to array
 
     int n=walking_collision_array[current_map].size;
     walking_collision_array[current_map].quads[n].x1=x1;

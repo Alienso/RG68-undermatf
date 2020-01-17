@@ -19,7 +19,7 @@ void add_event(int x1,int x2,int y1,int y2,int i){
     return;
 }
 
-void add_key_event(int x1,int x2,int y1,int y2,int i){
+void add_key_event(int x1,int x2,int y1,int y2,int i){ //event that needs keypress
 
     int x=events[current_map].size;
     events[current_map].quads[x].x1=x1;
@@ -53,8 +53,10 @@ void end_talk(int i){
     return;
 }
 
-int check_events(){
+int check_events(){ //checks if event happended
 
+    exclamation_mark=0;
+    
     for (int i=0;i<events[current_map].size;i++){
         if (events[current_map].key[i]==0)
             if (check_quad(events[current_map].quads[i].x1,events[current_map].quads[i].x2,events[current_map].quads[i].y1,events[current_map].quads[i].y2)){
@@ -67,7 +69,6 @@ int check_events(){
         }
         else if (events[current_map].key[i]==1 && check_quad(events[current_map].quads[i].x1,events[current_map].quads[i].x2,events[current_map].quads[i].y1,events[current_map].quads[i].y2))
             exclamation_mark=1;
-        else exclamation_mark=0;
     }
         return 0;
 }
@@ -76,6 +77,20 @@ void switch_to_entrance(){
     current_map=0;
     absolute_position_x=76;
     absolute_position_y=90;
+    glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+}
+
+void switch_to_4(){
+    current_map=2;
+    if (absolute_position_x>500){
+        absolute_position_x=726;
+        absolute_position_y=120;
+    }
+    else {
+        absolute_position_x=357;
+        absolute_position_y=83;
+        player_side=14;
+    }
     glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
 }
 
@@ -132,6 +147,22 @@ void first_talk(){
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 9:
+            strcpy(wtp,"I was planing to do a story here, but the time was short");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 10:
+            strcpy(wtp,"So what you got here is a demo\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 11:
+            strcpy(wtp,"Explore the first floor,the 4th one isn't finished yet\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 12:
+            strcpy(wtp,"You CAN climb up, but when you do, you'll be stuck there\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 13:
             add_key_event(60,73,52,58,4);
             end_talk(0);
         }
@@ -187,6 +218,7 @@ void open_chemist_shop(){
             break;
         case 4:
             glutKeyboardFunc(on_keyboard_walking);
+            glutKeyboardUpFunc(on_keyboard_up_walking);
             conversation_happening=0;
             talk_phase=0;
             last_key_pressed=0;
@@ -195,6 +227,24 @@ void open_chemist_shop(){
     }
     return;
 
+}
+
+void npc_test(){
+
+    int x=absolute_position_x;
+    if (x>=936 && x<=946)
+        curr_enemy=Boss;
+    if (x>=948 && x<=958)
+        curr_enemy=OperacioniMenadzer;
+    if (x>=960 && x<=969)
+        curr_enemy=Menadzer;
+    if (x>=973 && x<=983)
+        curr_enemy=Programer;
+
+    gradient=-1;
+    glutTimerFunc(1,on_timer_gradient_to_encounter,TIMER_GRADIENT_TO_ENCOUNTER);
+    return;
+    
 }
 
 #endif

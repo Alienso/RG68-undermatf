@@ -11,6 +11,7 @@
 #define TIMER_NO_CHOICE 7
 #define TIMER_GRADIENT_TO_WALKING 8
 #define TIMER_GRADIENT_TO_ENCOUNTER 9
+#define TIMER_MINI_GAME 10
 
 #define WALKING 0
 #define ENCOUNTER 1
@@ -43,7 +44,7 @@ typedef struct cvor{
 
 typedef struct ENEMY{
     char name[30];
-    char quote[2][50];
+    char quote[2][100];
     int hp;
     int att;
     int def;
@@ -69,9 +70,14 @@ typedef struct QUAD{
 
 typedef struct EVENT{
     Quad_Base quads[1024];
-    int no[1024];
-    int key[1024];
+    int no[1024]; // Event number
+    int key[1024]; //is it a key event or not
     int size;
 }Event;
 
+typedef struct SPEAR{
+    int side;
+    int x;
+    int y;
+}Spear;
 #endif

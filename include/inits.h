@@ -7,6 +7,13 @@
 
 #define FILENAME0 "./assets/ulaz.bmp"
 #define FILENAME1 "./assets/prvi.bmp"
+#define FILENAME2 "./assets/cetvrti.bmp"
+
+
+/*#define FILENAME6 "./assets/programer.bmp"
+#define FILENAME7 "./assets/menadzer.bmp"
+#define FILENAME8 "./assets/operacioni_menadzer.bmp"
+#define FILENAME9 "./assets/boss.bmp"*/
 
 #define FILENAME10 "./assets/player/player_front.bmp"
 #define FILENAME11 "./assets/player/player_front2.bmp"
@@ -65,6 +72,88 @@ void initTextures(void)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //CETVRTI SPRAT
+    image_read(image, FILENAME2);
+
+    glBindTexture(GL_TEXTURE_2D, names[2]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    /*//PROGRAMER
+    image_read(image, FILENAME6);
+
+    glBindTexture(GL_TEXTURE_2D, names[6]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //MENADZER
+    image_read(image, FILENAME7);
+
+    glBindTexture(GL_TEXTURE_2D, names[7]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //OPERACIONI MENADZER
+    image_read(image, FILENAME8);
+
+    glBindTexture(GL_TEXTURE_2D, names[8]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    //BOSS
+    image_read(image, FILENAME9);
+
+    glBindTexture(GL_TEXTURE_2D, names[9]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);*/
+
+
 
     //PLAYER_FRONT
     image_read(image, FILENAME10);
@@ -233,19 +322,19 @@ void init_Items_Enemies(){
 
     Spoon= new_Item("Spoon\0","Its a small spoon\0",10,0,0,0,0);
     Knjiga=new_Item("Knjiga\0","Knjiga iz Analize 1\0",1,1,0,0,0);
-	Olovka=new_Item("Olovka\0","Tupa je\0",20,0,0,0,0);
+	Olovka=new_Item("Olovka\0","Tupa je\0",5,0,0,0,0);
 
     int dummy_attacks[5]={0,0,0,0,0};
-    int programer_attacks[5]={0,1,2,3,4};
-    int menadzer_attacks[5]={5,6,7,8,9};
-    int operacioni_attacks[5]={10,11,12,13,14};
-    int menadzer_kvaliteta_attacks[5]={15,16,17,18,19};
-    int boss_attacks[5]={20,21,22,23,24};
+    int programer_attacks[5]={1,2,3,15,5};
+    int menadzer_attacks[5]={10,11,7,8,12};
+    int operacioni_attacks[5]={4,6,9,13,14};
+    int menadzer_kvaliteta_attacks[5]={20,16,17,18,19};
+    int boss_attacks[5]={21,21,21,21,21};
 
-    Dummy = new_Enemy("...\0","...\0","...\0",10,0,0,dummy_attacks);
-    Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",10,2,0,programer_attacks);
+    Dummy = new_Enemy("Dummy\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0",10,0,0,dummy_attacks);
+    Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",20,2,0,programer_attacks);
     Menadzer = new_Enemy("Menadzer sa FON-a\0","smth\0","smthh\0",20,5,5,menadzer_attacks);
-    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,7,5,operacioni_attacks);
+    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,4,5,operacioni_attacks);
     MenadzerKvaliteta = new_Enemy("Menadzer Kvaliteta\0","dsad\0","dasew\0",30,4,8,menadzer_kvaliteta_attacks);
     Boss = new_Enemy("Final Boss\0","sdas\0","ewqe\0",50,10,5,boss_attacks);
 
@@ -303,6 +392,17 @@ void init_walking_collisions(){
     add_to_wca(494,502,68,72); //ws pregrada
     add_to_wca(441,450,34,70); //wc podela vertikalna
     add_to_wca(417,475,49,57); //wc podela horizontalna
+    add_to_wca(416,421,30,38); //wc leva donja pregrada
+    add_to_wca(386,389,35,96); //wc levi zid
+    add_to_wca(388,397,69,71); //wc leva gornja pregrada
+    add_to_wca(428,462,30,80); //wc solje
+    add_to_wca(345,400,93,95); //zadnji deo hodnika
+    add_to_wca(312,318,0,123); //skroz desno
+    add_to_wca(300,323,46,61); //tabla
+    add_to_wca(322,343,27,40); //klupa
+    add_to_wca(310,354,0,26); //vrata desno
+    add_to_wca(348,373,0,77); //lift
+    add_to_wca(715,731,122,144); //stepenice ka dole
 
     current_map=0;
     return;
@@ -315,12 +415,18 @@ void init_events(){
 
     current_map=0;
 
-    add_event(70,78,53,55,0); //first talk;
+    //add_event(70,78,53,55,0); //first talk;
     add_event(66,89,92,94,1); //entrance->hall
     
     current_map=1;
     add_event(888,900,48,50,2); //hall->entrance
-    add_key_event(590,605,119,125,3); //chemist
+    add_key_event(590,605,107,123,3); //chemist
+    add_event(373,386,59,61,5); //entrance->4 lift
+    add_event(718,731,144,146,5); //entrence->4 stepenice
+    add_key_event(936,945,168,175,6); //NPC Test Boss
+    add_key_event(948,957,168,175,6); // -||- Operacioni Menadzer
+    add_key_event(960,969,168,175,6); //Menadzer
+    add_key_event(973,982,168,175,6); //Programer
 
 
     current_map=0;
@@ -334,6 +440,10 @@ void init(){
         fprintf(stderr,"WTP");
         exit(1);
     }
+
+    for (int i=0;i<100;i++)
+        for (int j=0;j<100;j++)
+            boss_field[i][j]=0;
 
     srand(time(NULL));
     init_Items_Enemies();

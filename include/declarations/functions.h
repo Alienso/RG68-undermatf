@@ -21,6 +21,8 @@ static void on_keyboard_to_walking(unsigned char key, int x, int y);
 static void on_keyboard_up_combat(unsigned char key, int x,int y);
 static void on_keyboard_up_walking(unsigned char key, int x,int y);
 
+static void on_keyboard_boss(unsigned char key,int x,int y);
+
 
 static void on_timer_encounter(int value);
 static void on_timer_walking(int value);
@@ -34,6 +36,7 @@ static void on_timer_animation_move(int value);
 static void on_timer_no_choice(int value);
 static void on_timer_gradient_to_walking(int value);
 static void on_timer_gradient_to_encounter(int value);
+static void on_timer_mini_game(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);
@@ -54,7 +57,9 @@ void draw_escape();
 void draw_mercy();
 void draw_conversation();
 void draw_exclamation_mark();
+void draw_spike(int i,int x,int y);
 
+void clear_boss_field();
 void check_collision(float x,float y);
 void switch_to_combat();
 void switch_to_encounter();
@@ -83,6 +88,7 @@ void add_to_inv(Item* item,CVOR** inv);
 Item* new_Item(char* name,char* desc,int att,int def,int hp,int consumable,int price);
 Enemy* new_Enemy(char* name,char* quote1,char* quote2,int hp,int att,int def,int attacks[5]);
 
+void bullet_hell_0();
 void bullet_hell_1();
 void bullet_hell_2();
 void bullet_hell_3();
@@ -103,6 +109,8 @@ void bullet_hell_17();
 void bullet_hell_18();
 void bullet_hell_19();
 void bullet_hell_20();
+void bullet_hell_21();
+void bullet_hell_22();
 
 
 void first_talk();
@@ -110,6 +118,8 @@ void switch_to_hall();
 void switch_to_entrance();
 void open_chemist_shop();
 void tutorial_guy_talk();
+void switch_to_4();
+void npc_test();
 
 
 
