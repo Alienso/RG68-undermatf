@@ -4,6 +4,7 @@ UnderMatf
 Komande:
 
 | WASD  |  Kretanje |
+
 | Space | Interakcija |
 
 
@@ -14,5 +15,6 @@ Zbog toga postoje i 2 MakeFile-a, jedan koji ukljucuje alut i drugi koji ne.
 instalacija OpanAl-a i alut-a:
 
    OpenAL: sudo apt-get install libopenal0a libopenal-dev
+
    ALUT:   sudo apt-get install libalut0 libalut-dev
 
