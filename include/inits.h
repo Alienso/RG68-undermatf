@@ -335,7 +335,7 @@ void init_Items_Enemies(){
     int menadzer_kvaliteta_attacks[5]={20,16,17,18,19};
     int boss_attacks[5]={21,21,21,21,21};
 
-    Dummy = new_Enemy("Dummy\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0",15,0,0,dummy_attacks);
+    Dummy = new_Enemy("Dummy\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0",15,2,0,dummy_attacks);
     Programer = new_Enemy("Programer sa FON-a\0","Who needs Math anyway\0","Who needs Math anyway\0",25,3,0,programer_attacks);
     Menadzer = new_Enemy("Menadzer sa FON-a\0","You think you're so smart...Hmmm?\0","You think you're so smart...Hmmm?\0",30,5,5,menadzer_attacks);
     OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","FON is LIFE\0","FON is LIFE\0",35,4,5,operacioni_attacks);
@@ -395,7 +395,7 @@ void init_walking_collisions(){
     add_to_wca(410,481,66,95); //donji zid hodnik nastavak
     add_to_wca(706,735,150,152); //stepenice uske
     add_to_wca(461,500,149,151); //studentska sluzba vrata gore
-    add_to_wca(500,502,32,90); //wc desni zid
+    add_to_wca(500,502,32,95); //wc desni zid
     add_to_wca(380,504,35,37); //wc donji zid
     add_to_wca(494,502,68,72); //ws pregrada
     add_to_wca(441,450,34,70); //wc podela vertikalna

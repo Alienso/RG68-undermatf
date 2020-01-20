@@ -105,8 +105,8 @@ static void on_display_walking(void){
     glColor3f(1,1,1);
     if (conversation_happening)
         draw_conversation();
-    sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,exclamation_mark);
-    draw_text(wtp,-0.8,-0.8,1,1,1);
+    /*sprintf(wtp,"%d %d %d",absolute_position_x,absolute_position_y,exclamation_mark);
+    draw_text(wtp,-0.8,-0.8,1,1,1);*/
 
     if (encounter_start_animation)
         draw_hearth();

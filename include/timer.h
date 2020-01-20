@@ -142,15 +142,18 @@ static void on_timer_animation_move(int value){
     int x=rand()%100000;
     if (x/1000.0<=0.6){
         gradient=-1;
-        switch (rand()%3)
+        switch (rand()%6)
         {
         case 0:
+        case 1:
+        case 2:
             curr_enemy=Programer;
             break;
-        case 1:
+        case 3:
+        case 4:
             curr_enemy=Menadzer;
             break;
-        case 2:
+        case 5:
             curr_enemy=OperacioniMenadzer;
             break;
         }
