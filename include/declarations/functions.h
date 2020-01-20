@@ -71,6 +71,7 @@ void init_inv();
 void init_Items_Enemies();
 void init_walking_collisions();
 void init_events();
+void init_audio();
 
 
 int can_walk();

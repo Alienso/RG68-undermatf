@@ -17,6 +17,9 @@
 
 int main(int argc, char **argv){
 
+    #ifndef AUDIO
+    alutInit(0, NULL);
+    #endif
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glEnable(GL_TEXTURE_2D);
@@ -68,6 +71,13 @@ void switch_to_combat(){
 
 void switch_to_encounter(){
 
+    #ifndef AUDIO
+    alSourcePause(source[0]);
+    if (curr_enemy==Boss)
+        alSourcePlay(source[1]);
+    else
+        alSourcePlay(source[2]);
+    #endif
     enemy_hp=curr_enemy->hp;
     walking=0;
     really_walking=0;
@@ -80,6 +90,12 @@ void switch_to_encounter(){
 
 void switch_to_walking(){
 
+    #ifndef AUDIO
+    alSourceStop(source[1]);
+    alSourceStop(source[2]);
+    if (current_map!=0)
+        alSourcePlay(source[0]);
+    #endif
     walking=1;
     last_key_pressed=0;
     glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
@@ -92,10 +108,13 @@ void switch_to_walking(){
 void check_collision(float x,float y){ //collision while walking
 
     if (!invulnerable && (x_hearth>x-0.02 && x_hearth<x+0.02) && (y_hearth>y-0.02 && y_hearth<y+0.02)){
-        hp-=5;
+        hp-=curr_enemy->att;
         invulnerable=1;
         glutTimerFunc(1250,on_timer_invulnerable,TIMER_INVULNERABLE);
     }
+    if (hp<0)
+        hp=0;
+
     return;
 }
 

@@ -27,6 +27,10 @@
 #define FILENAME18 "./assets/chemist.bmp"
 #define FILENAME19 "./assets/menu.bmp"
 
+#define SFILENAME1 "./assets/sounds/walking.wav"
+#define SFILENAME2 "./assets/sounds/boss.wav"
+#define SFILENAME3 "./assets/sounds/fight.wav"
+
 void initTextures(void)
 {
     Image * image;
@@ -331,12 +335,12 @@ void init_Items_Enemies(){
     int menadzer_kvaliteta_attacks[5]={20,16,17,18,19};
     int boss_attacks[5]={21,21,21,21,21};
 
-    Dummy = new_Enemy("Dummy\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0",10,0,0,dummy_attacks);
-    Programer = new_Enemy("Programer sa FON-a\0","Java is Supreme Programing Language\0","Who needs Math anyway\0",20,2,0,programer_attacks);
-    Menadzer = new_Enemy("Menadzer sa FON-a\0","smth\0","smthh\0",20,5,5,menadzer_attacks);
-    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","ssda\0","sdqweq\0",30,4,5,operacioni_attacks);
+    Dummy = new_Enemy("Dummy\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0","You Talk to a Dummy..... Doesnt seem much of a conversation\0",15,0,0,dummy_attacks);
+    Programer = new_Enemy("Programer sa FON-a\0","Who needs Math anyway\0","Who needs Math anyway\0",25,3,0,programer_attacks);
+    Menadzer = new_Enemy("Menadzer sa FON-a\0","You think you're so smart...Hmmm?\0","You think you're so smart...Hmmm?\0",30,5,5,menadzer_attacks);
+    OperacioniMenadzer = new_Enemy("Operacioni Menadzer\0","FON is LIFE\0","FON is LIFE\0",35,4,5,operacioni_attacks);
     MenadzerKvaliteta = new_Enemy("Menadzer Kvaliteta\0","dsad\0","dasew\0",30,4,8,menadzer_kvaliteta_attacks);
-    Boss = new_Enemy("Final Boss\0","sdas\0","ewqe\0",50,10,5,boss_attacks);
+    Boss = new_Enemy("Final Boss\0","This is the END\0","This is the END\0",50,4,5,boss_attacks);
 
     Chemist_items[0]=H2SO4;
     Chemist_items[1]=HPPotion;
@@ -368,6 +372,10 @@ void init_walking_collisions(){
     add_to_wca(123,125,26,105); //desni zid
     add_to_wca(4,124,26,28); // donji zid
     add_to_wca(4,124,103,105); //gornji zid
+    add_to_wca(44,59,37,69); //4. stub
+    add_to_wca(44,59,71,102);//3
+    add_to_wca(96,112,37,69);//2
+    add_to_wca(96,112,71,102);//1
 
     current_map=1;
     add_to_wca(346+512,420+512,46,48); // donji zid ulaz
@@ -415,7 +423,7 @@ void init_events(){
 
     current_map=0;
 
-    //add_event(70,78,53,55,0); //first talk;
+    add_event(70,78,53,55,0); //first talk;
     add_event(66,89,92,94,1); //entrance->hall
     
     current_map=1;
@@ -433,6 +441,20 @@ void init_events(){
 
 }
 
+#ifndef AUDIO
+void init_audio(){
+    buffer1 = alutCreateBufferFromFile(SFILENAME1);
+    buffer2 = alutCreateBufferFromFile(SFILENAME2);
+    buffer3 = alutCreateBufferFromFile(SFILENAME3);
+
+    alGenSources(3, &source);
+    alSourcei(source[0], AL_BUFFER, buffer1);
+    alSourcei(source[1], AL_BUFFER, buffer2);
+    alSourcei(source[2], AL_BUFFER, buffer3);
+
+    return;
+}
+#endif
 void init(){
 
     wtp=(char*)calloc(200,sizeof(char));
@@ -451,7 +473,10 @@ void init(){
     initTextures();
     init_walking_collisions();
     init_events();
-    
+    #ifndef AUDIO
+    init_audio();
+    #endif
+
     player_side=10;
     current_map=0;
     weapon_equiped=Olovka;

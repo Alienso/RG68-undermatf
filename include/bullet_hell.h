@@ -98,7 +98,7 @@ void bullet_hell_5(){
     glBegin(GL_POINTS);
         for (float te=0;te<t*2*3.14;te+=0.01){
             x=0.2*t*sin(te)*(pow(2.71,cos(te))-2*cos(4*te)-(pow(sin(te/12),5)));
-            y=0.2*t*cos(te)*(pow(2.71,cos(te))-2*cos(4*te)-(pow(sin(te/12),5)))-0.2;
+            y=0.2*t*cos(te)*(pow(2.71,cos(te))-2*cos(4*te)-(pow(sin(te/12),5)))-0.4;
             glVertex2f(x,y);
             check_collision(x,y);
         }

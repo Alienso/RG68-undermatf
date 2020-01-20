@@ -71,6 +71,14 @@ static void on_timer_move_walking(int value){ //allows movement
         return;
     }
 
+    #ifndef AUDIO
+    if (current_map!=0){
+        alGetSourcei(source[0], AL_SOURCE_STATE, &state);
+        if (state != AL_PLAYING)
+            alSourcePlay(source[0]);
+    }
+    #endif
+
 	if (walking_vec.y==1 && absolute_position_y>=current_texture_h){
         absolute_position_x-=walking_vec.x;
         absolute_position_y-=walking_vec.y;
@@ -131,17 +139,30 @@ static void on_timer_animation_move(int value){
 
     animation_phase=!animation_phase;
 
-    /*int x=rand()%100000;
+    int x=rand()%100000;
     if (x/1000.0<=0.6){
         gradient=-1;
-        curr_enemy=Programer;
+        switch (rand()%3)
+        {
+        case 0:
+            curr_enemy=Programer;
+            break;
+        case 1:
+            curr_enemy=Menadzer;
+            break;
+        case 2:
+            curr_enemy=OperacioniMenadzer;
+            break;
+        }
         glutKeyboardFunc(NULL);
         walking_vec.x=0;
         walking_vec.y=0;
+        x_hearth=0;
+        y_hearth=0;
         encounter_start_animation=1;
         glutTimerFunc(1,on_timer_gradient_to_encounter,TIMER_GRADIENT_TO_ENCOUNTER);
         return;
-    }*/
+    }
 
     if (walking && (walking_vec.x!=0 || walking_vec.y!=0))
         glutTimerFunc(250,on_timer_animation_move,TIMER_ANIMATION_MOVE);
@@ -165,6 +186,8 @@ static void on_timer_gradient_to_encounter(int value){
         return;
 
     gradient+=20.0/1000;
+    if (gradient<0)
+        y_hearth-=0.2/50;
 
     if (gradient>=0 && gradient<=0.04)
         switch_to_encounter();

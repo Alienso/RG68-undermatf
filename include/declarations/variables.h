@@ -20,7 +20,7 @@ int fps_counter=0;
 int random_attack;
 int hp=20;
 int my_damage;
-int enemy_hp=20;
+int enemy_hp;
 int current_texture_w;
 int current_texture_h;
 int player_side=1;
@@ -34,6 +34,11 @@ int gold=100;
 int shield_side=0;
 int mini_game_counter=0;
 int mini_game_speed=0;
+
+#ifndef AUDIO
+ALuint buffer1, buffer2, buffer3, source[3];
+ALuint state;
+#endif
 
 //STRUCT-------------------------------------------------------
 char* wtp;

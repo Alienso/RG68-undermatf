@@ -2,7 +2,7 @@ PROGRAM = game
 CC      = gcc
 CFLAGS  = -g -Wall -I/usr/X11R6/include -I/usr/pkg/include
 LDFLAGS = -L/usr/X11R6/lib -L/usr/pkg/lib ./include/header.h ./include/keyboard.h ./include/drawing.h ./include/inventory.h ./include/Items_Enemies.h ./include/text.h ./include/timer.h ./include/image.h
-LDLIBS  = -lglut -lGLU -lGL -lm
+LDLIBS  = -lglut -lGLU -lGL -lm -lalut -lopenal -lX11
 
 $(PROGRAM): main.o
 	$(CC) $(LDFLAGS) -o $(PROGRAM) main.o $(LDLIBS)
