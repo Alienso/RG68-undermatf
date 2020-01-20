@@ -2,10 +2,9 @@
 UnderMatf
 
 Komande:
-| Dugme | Akcija |
-| ------- | ------------- |
-| WASD  |  Kretane |
-| space | Interakcija |
+
+| WASD  |  Kretanje |
+| Space | Interakcija |
 
 
 Postoje 2 verzije igre sa zvukom i bez (ukoliko iz bilo kog razloga bude problema sa alut u openal bibliotekom)
