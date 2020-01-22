@@ -423,7 +423,7 @@ void init_events(){
 
     current_map=0;
 
-    add_event(70,78,53,55,0); //first talk;
+    add_event(70,85,53,55,0); //first talk;
     add_event(66,89,92,94,1); //entrance->hall
     
     current_map=1;
