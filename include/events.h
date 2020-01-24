@@ -163,6 +163,10 @@ void first_talk(){
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 13:
+            strcpy(wtp,"Search for X-s on the floor, they will be like a.... trining dummies for difffrent enemies\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 14:
             add_key_event(60,73,52,58,4);
             end_talk(0);
         }

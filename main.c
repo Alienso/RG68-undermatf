@@ -44,6 +44,8 @@ void switch_to_combat(){
     enemy_turn=1;
     glutDisplayFunc(on_display_combat);
 
+    x_hearth=0;
+    y_hearth=-0.2;
     if (curr_enemy==Boss){
         mini_game_speed++;
         mini_game_counter=40;
@@ -53,8 +55,6 @@ void switch_to_combat(){
         glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
         glutKeyboardUpFunc(on_keyboard_none);
         glutTimerFunc(1,on_timer_mini_game,TIMER_MINI_GAME);
-        x_hearth=0;
-        y_hearth=-0.2;
     }
     else {
     glutKeyboardFunc(on_keyboard_combat);
@@ -78,6 +78,10 @@ void switch_to_encounter(){
     else
         alSourcePlay(source[2]);
     #endif
+
+    x_hearth=0;
+    y_hearth=-0.2;
+    attack_counter=0;
     enemy_hp=curr_enemy->hp;
     walking=0;
     really_walking=0;

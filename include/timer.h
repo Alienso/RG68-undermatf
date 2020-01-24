@@ -59,6 +59,20 @@ static void on_timer_move_combat(int value){ //allows movement
     y_hearth+=vec.y*0.01;
     
     t+=20/5000.0;
+    
+    #ifndef AUDIO
+    if (curr_enemy==Boss){
+        alGetSourcei(source[1], AL_SOURCE_STATE, &state);
+        if (state != AL_PLAYING)
+            alSourcePlay(source[1]);
+    }
+    if (curr_enemy!=Boss){
+        alGetSourcei(source[2], AL_SOURCE_STATE, &state);
+        if (state != AL_PLAYING)
+            alSourcePlay(source[2]);
+    }
+    #endif
+
     if (enemy_turn)
         glutTimerFunc(20,on_timer_move_combat,TIMER_MOVE_COMBAT);
 

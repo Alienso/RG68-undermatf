@@ -17,7 +17,6 @@ time_t start_time;
 time_t current_time;
 int fps=0;
 int fps_counter=0;
-int random_attack;
 int hp=20;
 int my_damage;
 int enemy_hp;
@@ -34,6 +33,7 @@ int gold=100;
 int shield_side=0;
 int mini_game_counter=0;
 int mini_game_speed=0;
+int attack_counter=0; //goes throu list of attacks in combat
 
 #ifndef AUDIO
 ALuint buffer1, buffer2, buffer3, source[3];
