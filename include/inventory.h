@@ -155,8 +155,14 @@ void use_item(CVOR* item){
 	if (hp>max_hp)
 	hp=max_hp;
 
-	if (enemy_hp<0)
-		enemy_hp=0;
+    if (enemy_hp<=0){
+        glutDisplayFunc(draw_win);
+        glutKeyboardFunc(on_keyboard_to_walking);
+    }
+
+	if (strcmp(item->Items->name,"Invisibilty Potion")==0)
+		invisible=1;
+	glutTimerFunc(60*1000,on_timer_invisible,TIMER_INVISIBLE);
 	return;
 }
 #endif

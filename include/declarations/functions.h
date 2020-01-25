@@ -37,6 +37,7 @@ static void on_timer_no_choice(int value);
 static void on_timer_gradient_to_walking(int value);
 static void on_timer_gradient_to_encounter(int value);
 static void on_timer_mini_game(int value);
+static void on_timer_invisible(int value);
 
 static void on_display_encounter(void);
 static void on_display_combat(void);

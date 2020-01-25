@@ -309,6 +309,9 @@ void bullet_hell_21(){
     glColor3f(1,1,1);
     glLineWidth(2);
 
+    if (hp<0)
+        hp=0;
+
     switch (shield_side){
         case 0:
             glBegin(GL_LINE_STRIP);

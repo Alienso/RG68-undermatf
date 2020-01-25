@@ -72,6 +72,7 @@ int animation_phase=0;
 int conversation_happening;
 int encounter_start_animation=0;
 int exclamation_mark=0;
+int invisible=1;
 
 int win_screen=0;
 int escape_screen=0;

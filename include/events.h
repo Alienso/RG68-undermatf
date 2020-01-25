@@ -96,6 +96,7 @@ void switch_to_4(){
 
 void switch_to_hall(){
     current_map=1;
+    invisible=0;
     absolute_position_x=897;
     absolute_position_y=55;
     glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
