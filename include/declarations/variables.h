@@ -34,6 +34,8 @@ int shield_side=0;
 int mini_game_counter=0;
 int mini_game_speed=0;
 int attack_counter=0; //goes throu list of attacks in combat
+float cm=1; //t doesnt go to 1 on some PCs but to 0.6 so this fixes it
+float maxt; //max t
 
 #ifndef AUDIO
 ALuint buffer1, buffer2, buffer3, source[3];

@@ -164,10 +164,14 @@ void first_talk(){
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 13:
-            strcpy(wtp,"Search for X-s on the floor, they will be like a.... trining dummies for difffrent enemies\0");
+            strcpy(wtp,"Search for the X-s on the floor to freely fight every enemy in game\0");
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 14:
+            strcpy(wtp,"And also....Try not to press every button while walking or youll end up dancing like Michael Jackson\0");
+            glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
+            break;
+        case 15:
             add_key_event(60,73,52,58,4);
             end_talk(0);
         }
