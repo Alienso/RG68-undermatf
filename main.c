@@ -42,6 +42,7 @@ int main(int argc, char **argv){
 
 void switch_to_combat(){
     enemy_turn=1;
+    maxt=0;
     glutDisplayFunc(on_display_combat);
 
     x_hearth=0;
@@ -78,9 +79,8 @@ void switch_to_encounter(){
     else
         alSourcePlay(source[2]);
     #endif
-
-    if (maxt<0.7 && cm!=1)
-        cm=1.7;
+    if (maxt<0.7 && cm==1)
+        cm=1.6;
 
     x_hearth=0;
     y_hearth=-0.2;
