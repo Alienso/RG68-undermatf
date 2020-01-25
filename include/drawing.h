@@ -135,9 +135,9 @@ static void on_display_combat(void){
         fps=fps_counter;
         fps_counter=0;
         start_time=current_time;
-    }
-    fps_counter++;
-    sprintf(wtp,"%f",t);
+    }*/
+    /*fps_counter++;
+    sprintf(wtp,"%f",t*cm);
     draw_text(wtp,0.8,0.8,1,1,1);*/
 
     (*att_ptrs[curr_enemy->attacks[attack_counter]])();

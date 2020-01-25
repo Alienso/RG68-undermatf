@@ -5,9 +5,6 @@ void bullet_hell_0(){
     //prava linija
     if (maxt<t && cm==1)
         maxt=t;
-
-    if (maxt<0.7)
-        cm=1.7;
     
     float T=t*cm;
 
