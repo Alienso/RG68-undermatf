@@ -130,13 +130,13 @@ static void on_display_combat(void){
         glVertex2f(0.9,0.9);
     glEnd();*/ //Da li se ekran osvezava
 
-    current_time=time(NULL);
+    /*current_time=time(NULL);
     if (current_time-start_time==1){
         fps=fps_counter;
         fps_counter=0;
         start_time=current_time;
     }
-    /*fps_counter++;
+    fps_counter++;
     sprintf(wtp,"%f",t);
     draw_text(wtp,0.8,0.8,1,1,1);*/
 
@@ -256,7 +256,7 @@ static void on_display_menu(void){ //first screen you see
     glutSwapBuffers();
 }
 
-void draw_base(){
+void draw_base(){ //HUD
 
     glClear(GL_COLOR_BUFFER_BIT);
 

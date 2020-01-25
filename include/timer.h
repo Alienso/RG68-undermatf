@@ -153,7 +153,7 @@ static void on_timer_animation_move(int value){
 
     animation_phase=!animation_phase;
 
-    int x=rand()%100000;
+    int x=rand()%100000; //Random Encounter
     if (x/1000.0<=0.6 && !invisible){
         gradient=-1;
         switch (rand()%6)

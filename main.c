@@ -109,7 +109,7 @@ void switch_to_walking(){
     return;
 }
 
-void check_collision(float x,float y){ //collision while walking
+void check_collision(float x,float y){ //collisions in combat
 
     if (!invulnerable && (x_hearth>x-0.02 && x_hearth<x+0.02) && (y_hearth>y-0.02 && y_hearth<y+0.02)){
         hp-=curr_enemy->att;

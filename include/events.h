@@ -234,7 +234,7 @@ void open_chemist_shop(){
 
 }
 
-void npc_test(){
+void npc_test(){ //Combat Dummies
 
     int x=absolute_position_x;
     if (x>=936 && x<=946)
