@@ -79,8 +79,6 @@ void switch_to_encounter(){
     else
         alSourcePlay(source[2]);
     #endif
-    if (maxt<0.7 && cm==1)
-        cm=1.6;
 
     x_hearth=0;
     y_hearth=-0.2;
