@@ -168,7 +168,7 @@ void first_talk(){
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 14:
-            strcpy(wtp,"And also....Try not to press every button while walking or youll end up dancing like Michael Jackson\0");
+            strcpy(wtp,"And also....Try not to press every single button while walking\0");
             glutTimerFunc(1,on_timer_move_walking,TIMER_MOVE_WALKING);
             break;
         case 15:

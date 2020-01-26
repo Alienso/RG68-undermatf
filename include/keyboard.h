@@ -181,6 +181,7 @@ static void on_keyboard_encounter(unsigned char key, int x, int y){
             enemy_hp-=my_damage;
             attack_counter=(attack_counter+1)%5;
             if (enemy_hp<=0){
+                gold+=15;
                 glutDisplayFunc(draw_win);
                 glutKeyboardFunc(on_keyboard_to_walking);
             }
