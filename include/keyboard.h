@@ -34,6 +34,12 @@ static void on_keyboard_combat(unsigned char key, int x, int y){
             break;
 		vec.x+=1;
         break;
+    case '+':
+        cm+=0.1;
+        break;
+    case '-':
+        cm-=0.1;
+        break;
     }
 
    glutPostRedisplay();
